@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	div{
+		width:600px;
+		height:50px;
+		background: black;
+		margin: 0 auto;
+		font-size:50px;
+		text-align:center;
+		color:white;
+	}	
+
+</style>
+<body>
+	<div id="divid">
+	</div>	
+
+<script>
+	var did = document.getElementById("divid");
+
+	var setobj = setInterval("settime()",1000);  //定时器  每一千毫秒（一秒）执行一次
+
+	num = 10;
+	function settime(){
+		var dd = new Date();
+		var t = dd.toLocaleString();    
+		if (num == 0) {
+			clearInterval();
+		}	
+		did.innerHTML = --num;  
+	}
+
+</script>
+</body>
+</html>

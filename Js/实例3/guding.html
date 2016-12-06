@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>1</h1>
+	<h1>2</h1>
+	<h1>3</h1>
+	<h1>4</h1>
+	<h1>5</h1>
+	<h1>6</h1>
+	<h1>7</h1>
+	<h1>8</h1>
+	<h1>9</h1>
+	<h1>10</h1>
+	<h1>11</h1>
+	<h1>12</h1>
+	<h1>13</h1>
+	<h1>14</h1>
+	<h1>15</h1>
+	<h1>16</h1>
+	<h1>17</h1>
+	<h1>18</h1>
+	<h1>19</h1>
+	<h1>20</h1>	
+	<img src="a.jpg" id="imgid" style="position: absolute;">
+</body>
+<script>
+	var imgobj = document.getElementById("imgid");
+	var imgw = imgobj.clientWidth; 
+	//图片的宽度
+	var winw = document.documentElement.clientWidth;
+	//可视区的宽度
+	var imgleft = winw-imgw;
+	console.log(imgleft);
+	imgobj.style.left = imgleft+"px";
+	imgobj.style.top = 0+"px";
+	window.onscroll = function(){
+		var sh = document.documentElement.scrollTop;
+		imgobj.style.top = sh+100+"px";
+	}
+</script>
+</html>

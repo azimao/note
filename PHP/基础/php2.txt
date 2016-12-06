@@ -1,0 +1,91 @@
+
+1.流程控制
+	if(){
+
+	}elseif(){
+
+	}elseif(){
+
+	}else{
+
+	}
+
+	if(){
+
+	}else{
+
+	}
+
+
+	switch(){
+
+	}
+
+	for(){
+
+	}
+	while(){
+
+	}
+
+	99
+	日历
+2.函数
+	function show(){
+
+	}
+	show();
+
+	参数
+	^^^
+	传参 可以一个或两个
+	参数可设默认 也可设置可变(变量)
+
+	break exit continue 
+
+
+
+	静态(static) 全局 局部 
+
+	globle
+
+	传参数
+	return
+
+	回调：
+
+	回调函数
+	function sum($a,$b){
+		echo $a+$b;
+	}
+	function func($i,$j,$k){
+		$k($i,$j);
+	}
+
+	func(1,2,'sum');
+
+	变量
+
+	变量函数
+	function show(){
+		echo 'aaaa';
+	}
+	$a='show';
+	$a();
+
+	递归
+
+	include();  不管包含是否错误，后面代码都会执行
+
+	require();  包含代码错误时，程序终止
+
+	
+
+
+
+
+
+
+
+
+

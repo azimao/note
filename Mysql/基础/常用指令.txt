@@ -1,0 +1,60 @@
+1.查询数据表状态
+SHOW TABLE STATUS FROM 表名;
+
+2.灌入测试数据
+	打开函数  存储过程  参数 IN t int
+BEGIN
+	#Routine body goes here...
+	set @num=1;
+	while @num<20 DO
+		if t=1 then
+			insert into user_sys (user_name,user_pwd) values(concat('user',@num),'123');
+		else
+			insert into user_sys2 (user_name,user_pwd) values(concat('user',@num),'123');
+		end if;
+		set @num=@num+1;
+	end while;
+END
+
+3. 回话存在以前的变量就会存在，所以在使用变量的时候最好先初始化   @gid=0   @user_name=''
+
+4.  索引
+	Normal //普通索引     Unique  //唯一索引
+
+
+5.设置时间
+	log_date        timestamp（类型）  CURRENT_TIMESTAMP（默认）
+
+6.查看事件是否打开
+	show VARIABLES like '%event%';       //默认关闭  event_scheduler	OFF
+	打开指令：
+		set global event_scheduler=on;
+
+7.只有innodb才支持事物
+
+8.查询数据表是否不通过事物直接执行  
+	show VARIABLES like '%commit%';     autocommit	ON
+	关闭指令：
+		set global autocommit=off;    //是常用方法
+
+	常用方法：
+		start TRANSACTION;  #开启事物
+		insert into user_balance(user_id,user_price) VALUES(2,20);
+	  
+	  如果插入成功：
+	  	COMMIT;   #执行事物
+	  如果插入失败：
+	  	ROLLBACK;    #回滚事物
+
+9.显示数据表存放的位置：
+	show VARIABLES like '%datadir%';
+
+10.显示数据库有问题语句的状态
+	show full PROCESSLIST                          //processlist
+
+11.备份数据库
+	C:\wamp\bin\mysql\mysql5.6.17\bin>mysqldump -h 120.76.234.111 -u root -p dw > qr
+k.sql
+
+12.修改密码
+	C:\wamp\bin\mysql\mysql5.6.17\bin>mysqladmin -u root -p password r201609

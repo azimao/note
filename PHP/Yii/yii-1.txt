@@ -1,0 +1,9 @@
+1.定义函数要加action
+	例：
+		function actionDo(){}
+
+2.设置为json格式：
+		\Yii::$app->response->format="json";
+
+
+数据库操作：

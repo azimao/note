@@ -1,0 +1,50 @@
+if、for语句使用：
+<for start='0' end='10'>
+		<if condition='$i%2 eq 0'>
+			<h1 style='background:#ccc'><{$i}></h1>
+		<else/>
+			<h1><{$i}></h1>
+		</if>
+</for>
+
+比较符：
+eq  等于
+neq 不等于
+gt  大于
+egt 大于等于
+lt  小于
+elt 小于等于
+
+inlcude包含文件：
+<include file='Public:footer'/>
+
+
+foreach遍历：
+<foreach name='rows' item='val'> 
+<if condition='$key%2 eq 0'>	
+	<h1><{$val.username}></h1>
+<else/>
+	<h1 style='background:#ccc'><{$val.username}></h1>
+</if>	
+</foreach>
+
+
+switch分支:
+<assign name='week' value='4'/>	
+<switch name='week'>
+	<case value='1'>星期一</case>
+	<case value='2'>星期二</case>
+	<default/>数据有问题
+</switch>
+
+
+empty标签：
+<empty name='age'>
+	<h1>空</h1>
+<else/>
+	<h1>不为空</h1>
+</empty>
+
+
+模板布局：
+

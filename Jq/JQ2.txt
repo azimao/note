@@ -1,0 +1,171 @@
+事件：
+	$(function(){});   //代表dom加载完毕
+
+		例：function imgclk(){
+				alert($(this).attr("src"));
+			}
+
+	bind();   //绑定事件
+		$("btn1").clik(function(){
+			$("img").bind("click",imgclk);
+		});
+
+	unbind();   //绑定事件
+		$("btn2").clik(function(){
+			$("img").unbind("click",imgclk);
+		});
+
+	one()    //绑定事件  只执行一次
+		$("btn2").clik(function(){
+			$("img").one("click",imgclk);
+		});
+
+		例：
+			<form action="">
+				用户：<input type="text" name="" id="">
+			</form>
+			<button id="btn1">提交表单</button>
+
+		 submit(); //不用submit提交表单
+		 $("#btn1").click(function(){
+		 	$("form").submit();
+		 });
+
+		例：
+		<p>aaa</p>
+		<button id="btn1">触发p标签单击事件</button>
+
+		trigger();   //触发某个事件
+		$("p").click(function(){
+			alert("pppp");
+		});
+
+		$("btn1").click(function(){
+			$("p").trigger("click");
+			//或者   $("p").click();
+		});
+
+		例：
+		<p>aaa</p>
+		<button id="btn1">给p标签加事件</button>
+		<button id="btn2">给p标签取事件</button>
+		<button id="btn3">生产p标签</button>
+
+	live();   //让新生成的P标签继承原有P标签的事件
+	die();    //去掉P标签所继承的事件
+
+		$("btn3").click(function(){
+			$("div").append("<p>bbbbbbb</p>");
+		});
+
+		$("bnt1").click(function(){
+			$("p").live("click", function(){
+				alert(1);
+			});
+		});
+
+		$("bnt2").click(funciton(){
+			$("p").die("click");
+		});
+
+	toggle();   //循环单击切换
+
+		例：
+			<img src="a.png" alt="">	
+
+		$("img").toggle(
+			function(){
+				$(this).attr("src","a.png");
+			},
+			function(){
+				$(this).attr("src","b.png");
+			},
+			function(){
+				$(this).attr("src","c.png");
+			}
+		);
+
+		$("img").hover(
+			function(){
+				$(this).attr("src","a.png");
+			},
+			function(){
+				$(this).attr("src","b.png");
+			}
+		);
+
+	focus();  //获得焦点
+
+		$(window).load(
+			$("input:text").focus();
+		);  //当页面加载完毕时  input获得焦点
+
+		$("input:text").focus(
+			$(this).css({"border":"3px solod #ccc"});
+		); //当input获得焦点的时候input边框发生改变
+
+	error();  //出现错误
+
+		$("img").error(
+			$(this).attr({"src":"a.png"});
+		); //当页面上的图片加载出现错误的时候显示a.png
+
+	change();  //标签发生改变
+
+
+
+特效：
+
+	show();  //显示
+
+		<img src="a.png" alt="" style="display:none">	
+		<button id="btn"></button>
+
+		$("#btn").click(function(){
+			$("img").show(1000);
+		});  //当点击 button是 图片一秒后显示
+
+	slideDown();  //向下滑
+	slideUp();   //向上滑
+	fadeIn();   //淡入
+	fadeOut();  //淡出
+
+
+	$("img").toggel(1000);  //如果图片隐藏一秒后显示，如果图存在就一秒后消失  
+
+	$("img").slideToggle();  //同上
+
+	$("div").fadeTo(1000,0.5);   //点击一面后背景变淡到0.5
+
+
+	动画：
+		$("#btn").click(function(){
+			$("img").animate({
+				left:"700px",
+			},1000,function(){
+				$(this).animate({
+					top:"500px ",
+				},1000);
+			});
+
+		});
+
+		stop(); //停止动画
+
+
+Ajax:
+	//json传值
+	$("#btn").click(function(){
+		$.post("index.php", function(data){
+			alert(data.id+data.name);
+		}, "json");
+	});
+
+	
+	$.ajax({
+		url:'',
+		type:'',
+		dataType:'',
+		success:function(msg){}
+
+	});

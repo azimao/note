@@ -1,0 +1,27 @@
+1. 
+	浏览器 ——> web服务器（Apache,nginx）——>php解释器 ——> php程序源码 ——>php中间代码 opcode——> 执行结果
+
+	php解释引擎虚拟机 zend engine	
+
+
+2.
+	memcache和redis的区别与联系
+
+	区别：
+		memecahe:
+			每个key的数据最大是1M
+			对各种技术支持比较前面，session可以存储到memcache中，框架支持比较好
+			适合储存简单，实用的数据
+			数据类型只有string
+			没有持久化
+
+		redis:
+			每个key的数据最大是1G
+			适合做集合计算（list/set/sortset）
+			数据类型比较丰富（string/list/set/sort set/hash）
+			有持久化
+
+		联系：
+			数据存储在内存当中，数据模型都是key-value
+
+		

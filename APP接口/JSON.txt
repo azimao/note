@@ -1,0 +1,19 @@
+1.  json 只能用 utf -8 编码
+
+	$data = "输出json数据";
+	$newDate = iconv('UTF-8', 'GBK', $date);   //  原始编码，新编码，需要转换的变量
+	echo json_encode($newDate);  //返回null   因为设置成了GBK编码
+
+2.  通讯状态码
+	code 状态码 (200, 400等);
+	message
+	
+
+3.接收json传过来的数据
+	$link = fopen("php://input", 'r');
+	打开php的输入流，所有提交到该文件的数据都可用用此获取
+	$json = fread($link, 10000);
+	读取刚才打开的输入流，最多读取10000字节
+
+	$c = file_get_contents('php://input');
+	$j = json_decode($c, true);

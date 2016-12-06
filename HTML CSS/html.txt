@@ -1,0 +1,105 @@
+实体
+< &lt;  >&gt;  空格 &nbsp
+<< &laquo;  >>&requo; X $times;
+-----------------------------------------------
+body属性
+bgcolor 背景颜色
+-----------------------------------------------
+格式标签
+br //换行    nobr(双标签) //不换行 
+p//段落 <p align=left/right/center>aaaaaaaaa</p>
+pre  //按源代码显示
+
+//无序列表
+<ul>  
+	<li></li>
+</ul>
+
+//有序列表
+<ol>
+	<li></li>
+</ol>
+
+//自定义列表
+<dl>
+	<dt></dt>  //标题
+	<dd></dd>  //标题内容
+</dl>
+
+b //加粗
+i  //斜体
+u //下划线
+--------------------------------------------------------
+图片
+  <img src="" width="" height="" alt="加载失败" title="" usemap="map">
+  <map name="#map">
+  	//shape rect形状矩形  //coords坐标需要两个
+  	<area shape="rect" coords="20,100,100,220" href="" alt="">
+  </map>
+------------------------------------------------------------
+a标签
+//targe目的地 //blank新窗口 self本窗口 parent父窗口 top顶窗口 
+<a href="" title="" targe="_blank/_self/_paren新窗口t/_top"></a>
+
+frame框架
+<frameset rows="40px,*" border="" frameborder=0/1 bordercolor="">
+	<frame src="top.html" name="top">
+	<frameset cols="50px,*">
+	    //noresize固定
+		<frame src="left.html" name="left" noresize>   
+		<frame sec="right.html" name="right">
+	</frameset>
+</frameset>
+
+iframe 内嵌框架
+<body>
+	<iframe src="myflash/index.php"></iframe>
+</body>
+
+----------------------------------------------------------------
+表格
+//cellpacing表格单元格距离 cellspadding单元格字与边框的距离
+<table summary="标题" width="" height="" border="" bordercolor="" cellspacing="" cellspadding="" align="right/left/center">
+	<caption>摘要</caption>
+	<tbody>
+			<th></th>  
+			<th></th>
+			<th></th>  
+		<tr>
+		//rowspan独占几行  colspan独占几几行  valign字体的位置
+			<td width="" height="" rowspan="" colspan="" rowspan="" align="right/left/center" valign="top/middle/bottom"></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>  多表格完全显示
+</table>                列表标签
+
+-------------------------------------------------------
+form表单
+// type="image 图片按钮/submit 提交按钮/reset 重置按钮/hidden 隐藏框/password密码文本框"
+<form action="" method="" enctype="">
+//readonly 只读  disablle 不能通过actirghon发送出去
+<input type="" name="" maxlength="" readonly/disable> 
+</form>
+
+//单选 type="radio"  单选name必须保持一致
+<from action="" method="" enctype="">
+<label>男<input type="radio" name="sex"></label>
+<label>女<input type="radio" name="sex"></label>
+</from>
+
+//多选 type="checkbox"  checked为默认选项
+<form action="" method="" enctype="">
+	汽车<input type="checkbox" name="" checked>	
+	飞机<input type="checkbox" name="">	
+	轮船<input type="checkbox" name="">	
+</form>
+
+//下拉菜单 multiple表示按ctrl可全选 selected固定选项 disabled不可选
+</form>
+	<select name="" id="" multiple size=10 >
+		<option value="" >洗车</option>
+		<option value="" selected>擦车</option>
+		<option value="" disabled>卖车</option>
+	</select>
+</form>

@@ -1,0 +1,148 @@
+数组函数
+-------------------------------------------------------
+数组的键值操作：
+array_keys($arr);
+array_values($arr); 
+ //把$arr数组中key value 分别取出形成数组
+
+in_array(user1,$arr);
+//验证$arr中是否存在user1（value）,返回值为真假
+array_key_exists(name,$arr);
+//验证$arr中是否存在age（key）,返回值为真假
+
+array_flip($arr);
+//把$arr中的key和value颠倒，返回值为数组
+
+array_reverse($arr);
+//把$arr中的所有值翻转，从新排序，返回值为数组
+------------------------------------------------------------------
+
+统计数组的元素和唯一性：
+1.count($arr);  //统计数组中的元素个数,返回值为int
+
+2.array_count_values($arr);  //统计value重复出现的次数,返回值为array
+实现算法：
+function array_counts($arr){
+	foreach($arr as $val){
+		$arr2[$val]++;
+	}
+	return $arr2;
+}
+
+3.array_unique($arr);  //去掉重复出现的元素,返回值为array
+------------------------------------------------------------------------------
+
+使用回调函数处理数组的函数：
+1.array_filter($arr,"函数名");  //过滤筛选  函数内为判断条件返回为array
+举例：
+	function jige($val){
+		if($val>=60){
+			return true;
+		}
+	}
+	$arr2=array_filter($arr,"jige")
+
+2.array_map();  //对数组里面的值进行处理，$n(value)
+算法实现：
+	function add(&$arr){
+		foreach($arr as $key=>$val){
+			$arr[$key]=$val+1;
+		}
+	}
+	add($arr);
+举例：
+	function jige($n){
+			return($n*$n*$n);
+	}
+	$arr2=array_map("jige",$arr)
+//可以进行多数组处理，数组和传参的个数要对应
+---------------------------------------------------------------
+
+数组的排序函数：
+1.sort($arr); 
+//升序   value排序不保留key值  如果保留key在sort前加a(asort) 返回值为bool;
+2. rsort($arr); //降序   同上   (arsort)
+
+3.ksort($arr);  //key升序排序,保留value  返回值为bool
+4.krsort($arr); //key降序排序,保留value  返回值为bool
+
+5.natsort($arr); //自然数(字符串)排序  返回值为bool
+6.natcasesort($arr); //忽略大 小写自然数(字符串)排序 返回值为bool
+
+7.array_multisort($lens,SORT_ASC/DESC,$arr); 
+//多数组排序  $arr根据$lens排序  ASC为升序/DESC为降序
+举例：
+$arr=array("aaa","bbbbbbbbbbb","cc","ddddddd");
+
+foreach($arr as $val){
+	$lens[]=strlen($val);  //strlen计算字符串长度
+}
+array_multisort($lens,SORT_ASC/DESC,$arr);
+
+sort($lens);
+
+$arr2=array_combine($lens,$arr);  
+//array_combine连个数组合并   
+
+---------------------------------------------------------
+
+拆分、合并、分解与结合函数
+
+1.explode("分隔符",$str);  
+//字符串拆分成数组 返回值为array
+举例：
+$str="a-b-c-d-e-f";
+$arr=explode("-",$str);
+
+2.join();  //等同于implode(); 数组连接成字符串
+$arr=array(1,2,3,4);
+$str=join("-",$str); //用-拆分成字符串
+
+3.array_slice($arr,0,4); 
+ //数组截取,从0开始取4个（0,1,2,3）  返回值为array
+ array_slice($arr,-2,2);
+ //从倒数第二个开始截取2个
+
+4.array_splice($arr,0,4);
+//数组裁剪  截取后原数组也会改变
+array_splice($arr,0,4,array("ff"));
+///数组截取,从0开始取4个（0,1,2,3）,形成一个新的数组，而原数组也被截取后增加 ff;
+
+5.array_combine($arrkey,$arrval);
+//数组合并  前面数组变成key,后面数组变成value
+
+6.array_merge($arrval1,$arrval2);
+//数组合并  两个数组的value合并（下表不能相同，否则会被覆盖）
+
+7.array_intersect($arrval1,$arrval2);
+//（交集）把两个数组中相同的value取出生成一个新数组,前面一个为参照物（$arrval1）
+
+8.array_diff($arrval1,$arrval2);
+//（差集）把两个数组中不同的value取出生成一个新数组，前面一个为参照物（$arrval1）
+
+9.array_pop($arr); //删除原数组最后一个元素
+	$b=arrar_pop($arr);//$b的值为删除的值形成的新数组
+
+10.array_push($arr,"dd"); 
+// 在原数组最后添加一个元素,返回值为int (数组的总长度)
+
+11.array_shift($arr); //在原数组最前面删除一个元素
+
+12.array_unshift($arr); //在原数组最后添加一个元素
+---------------------------------------------------------
+
+其他有用的数组
+1.array_rand($arr);
+//随机取出一个key 返回值为key
+$key=array_rand($arr);
+echo $arr[$key];  //随机取一个value
+
+2.range(1,5);
+$arr=range(a,z); 
+//形成一个value为a到z的数组
+
+3.shuffle($arr);
+//把原数组随机打乱
+
+4.array_sum($arr);
+//计算数组中所有value的和

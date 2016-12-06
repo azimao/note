@@ -1,0 +1,190 @@
+mysql  增 删 改 查
+
+-----------------------------------------
+DDL 数据定义语言
+
+DML 数据操作语言
+
+DQL 数据查询语言
+
+DCL 数据控制语言
+
+
+增  insert
+insert into t2(username) values('f');
+
+改 update
+ update t2 set username='g' where id=3;
+一次改多个值中间用逗号隔开 
+ update t2 set username='hh',id=77 where id=7;
+
+删 delete
+delete from t2 where id=3; 
+delete from t2 where id in(1,3,5);
+delete from t2 where id>=3 and id<=5;
+delete from t2 where id between 3 and 5;
+--------------------------------------------------------------
+
+查 select
+	1.选择特定字段：
+select * from user;
+select id,name from user;
+select name,pass user where id=3;
+
+	2.别名：
+select pass as p,id from user where id=3; (as可以省略)
+
+	3.取唯一值
+select distinct name from user;
+
+	4.使用where条件进行查询
+select from t2 where id=3; 
+select from t2 where id in(1,3,5);
+select from t2 where id>=3 and id<=5;
+select from t2 where id between 3 
+
+	 5.查询空值null
+select * from user where pass is null;  //不可以用等于号
+select * from user where pass is not null;
+
+	6.like搜索关键字
+select * from user where name like '%4%';
+select * from user where name regexp '.*4.*';  //正则
+select * from user where name like '%4%' or name like '%5%';
+select * from user where name regexp '(.*4.*)|(.*5.*)'; //正则
+
+	7.order by 查询结果排序
+select * from user order by id desc;    
+//默认是升序（asc） 加desc为降序
+
+	8.limit限定输出个数
+select * from user order by id limit 5;  //默认为0到5
+
+	9.concat 函数 （字符串连接符）
+select concat("a","-","b");
+select pass,concat(id,'-',name) idname from user;
+
+	10.rand 函数  （随机排序）
+select * from user order by rand() limit 1;
+//随机取出一行
+
+	11.count 统计
+select count(*) tot from user;  //统计一共有多少用户
+select count(id) tot from user;
+select count(id) from user where name='user5'; //统计user5发的帖子数
+
+	12.sum 求和
+select sum(id) from user where name='user5'; //所有user5的id之和
+
+	13.avg平均数
+ select avg(id) from user;
+
+ 	14.max最大值
+ select max(id) from user;
+
+ 	15.min最小值
+ select min(id) from user;
+
+ 	16.分组聚合
+ select name,count(id) from mess group by name order by count(id);
+ //group by 必须写在order by 前面
+
+select name,count(id) tot from mess group by name having tot >=5;   
+//当使用分组聚合时，筛选不能用where 需用having
+
+	往id后面加uid 字段
+ alter table post add uid int after id; 
+
+
+
+ 	17.对表查询
+(1).普通多表查询（优先选择）
+
+ select user.name,post.title,post.content from user,post where user.id=post.uid;
+ select user.name,count(user.id) from user,post where user.id=post.uid group by post.uid;
+
+(2).嵌套查询
+
+得到发帖人--嵌套查询
+mysql> select name from user where id in(select uid from post);
++-------+
+| name  |
++-------+
+| user3 |
+| user2 |
++-------+
+2 rows in set (0.00 sec)
+
+得到发帖人--普通查询
+mysql> select distinct（区别的） user.name from user,post where user.id=post.uid;
++-------+
+| name  |
++-------+
+| user3 |
+| user2 |
++-------+
+2 rows in set (0.00 sec)
+
+(3).左链接查询
+
+mysql> select user.name,post.title from user left join post on user.id=post.uid;
+
++-------+-------+
+| name  | title |
++-------+-------+
+| user3 | 3434  |
+| user3 | 3434  |
+| user3 | 3434  |
+| user2 | 3232  |
+| user2 | 3232  |
+| user1 | NULL  |
+| user4 | NULL  |
+| user5 | NULL  |
+| user2 | NULL  |
+| user1 | NULL  |
+| user3 | NULL  |
+| user2 | NULL  |
+| user5 | NULL  |
++-------+-------+
+
+
+
+ 
+需求：论坛用户和帖子统计
+user表：
+mysql> create table user(
+    -> id int unsigned auto_increment primary key,
+    -> name varchar(30),
+    -> age int);
+Query OK, 0 rows affected (0.09 sec)
+
+post表：
+mysql> create table post(
+    -> id int unsigned auto_increment primary key,
+    -> uid int,
+    -> title varchar(200),
+    -> content text);
+Query OK, 0 rows affected (0.02 sec)
+
+结果一：谁发的什么帖子
+mysql> select user.name,post.title,post.content from user,post where user.id=post.uid;
++-------+-------+--------------------+
+| name  | title | content            |
++-------+-------+--------------------+
+| user3 | 3434  | 999999999999       |
+| user3 | 3434  | 99999sdsds         |
+| user3 | 3434  | gggkkkgkgg         |
+| user2 | 3232  | 980799908888       |
+| user2 | 3232  | 9807999sfdajsjfjas |
++-------+-------+--------------------+
+5 rows in set (0.00 sec)
+
+结果二：谁发了多少个帖子
+mysql> select user.name,count(user.id) from user,post where user.id=post.uid group by post.uid;
++-------+----------------+
+| name  | count(user.id) |
++-------+----------------+
+| user2 |              2 |
+| user3 |              3 |
++-------+----------------+
+2 rows in set (0.00 sec)

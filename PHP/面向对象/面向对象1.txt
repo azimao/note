@@ -1,0 +1,119 @@
+面向对象
+-----------------------------------------------------
+
+person::say();
+//	直接访问类成员/类调用类属性
+
+extends
+//继承
+
+_consturct();       _destruct();       _toString();
+//结构体
+
+---------------------------------------------
+
+1.获取对象类
+get_calss();
+
+2.获取对象的父类
+get_parent_class();
+
+3.获取对象的属性
+get_object_vars();
+
+4.获取类的属性
+get_class_vars();
+
+5.获取类和对象的方法
+get_class_methods();
+
+6.对象或类中是否含有say方法
+method_exists("person","say");
+
+7.对象或类中是否含有name属性
+property_exists("person","name");
+
+8.测试对象是否属于某个类
+$yujie instanceof person
+
+9.是否为对象
+is_object();
+
+
+------------------------------------------------
+1.抽象类
+abstract
+//可包含普通方法和抽象方法
+
+2.接口
+interface
+//必须全是抽象方法
+子类继承不用__consturct  用implements
+
+-----------------------------------------------
+魔术方法
+
+1.自动加载
+function __autoload($className){
+	include($className.".class.php");
+}
+
+
+2.类常量(修饰属性)
+
+const HOST='localhost'  //定义类常量
+
+类内部使用
+self::HOST     //self代表本类
+
+类外部使用
+Model::HOST
+
+3.类静态变量
+static  $objs=0;
+function(){
+	self::$objs++;
+}
+//类常量和类静态变量都是通过类来调用
+
+4.final (修饰类和方法)
+最终版本
+-------------------------------------------------------------------------
+1.__clone  (克隆对象和方法)
+类是按引用传递
+
+$user= new Person();
+$user2= clone $user;
+
+2.__get  (获取私有属性)
+function __get($a){
+	echo $this->$a
+	//输出每一个私有属性的值 
+}
+
+3.__set (设置私有属性)
+
+private $age=20;
+
+function __set($a, $b){
+	if($b>=20){
+	$b=20;
+	}else{
+	$this->a=$b;
+	}
+}
+
+4.__isset (判断私有属性是否存在)
+
+private $age=20;
+function __isset($a){
+	retutn isset($this->a);
+	//返回值为真假
+}
+
+5.__unset (删除私有属性)
+
+private $age=20;
+function __unset($a){
+	unsset($this->a);
+}

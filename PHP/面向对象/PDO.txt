@@ -1,0 +1,68 @@
+PDO数据库抽象层：
+1.pdo类
+2.pdo预处理类
+3.pdo异常处理类
+
+mysql数据库支持：预处理和事务机制
+
+生成PDO数据库连接对象：
+$pdo=new PDO("mysql:host=localhost;dbname=t1","root","123");
+
+设置从结果集预处理对象中获取数据的默认数组类型：
+$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+
+设置操作字符集：
+$pdo->exec("set names utf8");
+
+执行增、删、改操作
+exec();
+
+执行查找操作
+query();
+
+获得最后一次插入的ID:
+lastInertID();
+
+设置结果集预处理对象中获取数据的默认数组类型
+setAttribute();
+
+查看结果集预处理对象中获取数据的默认数组类型
+getAttribute();
+
+----------------------------------------------------------
+
+PDO::ATTR_ERRMODE(pdo报错模式):
+PDO::ERRMODE_SILENT  //安静
+PDO::ERRMODE_WARNING //警告
+PDO::ERRMODE_EXCEPTION //异常
+
+PDO::ATTR_DEFAULT_FETCH_MODE(pdo获取模式):
+PDO::FETCH_NUM
+PDO::FETCH_ASSOC
+PDO::FETCH_BOTH
+
+异常处理警报：
+1.getMessage();
+2.getFile();
+3.getLine();
+
+事务机制：
+mysql搜索引擎
+1.myisam 不支持
+2.innodb 支持
+
+
+---------------------------------
+预处理机制：
+1.预先准备sql发送到服务器上去
+$st=$pdo->prepare($sql);
+
+2.给预处理语句绑定值，并绑定值得类型
+$st->bindValue(1,$val,PDO::PARAM_STR);
+$st->bindValue(2,$val2,PDO::PARAM_STR);
+
+3.执行这条预处理语句
+$st->execute();
+
+4.如果是查询，则需要获取查询数据
+$row=$st->fetchAll(); 

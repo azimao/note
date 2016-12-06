@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="bootstrap/js/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+			<div class="page-header">bs哒哒哒</div>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#mymodal">弹框</button>
+
+			<div id="mymodal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="close" data-dismiss="modal">&times;</div>
+							<h3>linux</h3>
+						</div>
+						<div class="modal-body">
+							<h4>这是最好地时代</h4>	
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary" data-dismiss="modal">关闭</button>
+							<button class="btn btn-primary save">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button class="btn btn-info smodal">模态框</button>
+			<div id="mymodal2" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="close" data-dismiss="modal">&times;</div>
+							<h3>linux</h3>
+						</div>
+						<div class="modal-body">
+							<h4>这是最好地时代</h4>	
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary" data-dismiss="modal">关闭</button>
+							<button class="btn btn-primary save">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+<script>
+	// 显示
+	$('.smodal').click(function(){
+		$("#mymodal2").modal('show');
+	});
+	//隐藏
+	$('.save').click(function(){
+		$("#mymodal2").modal('hide');
+	});
+
+	$("#mymodal2").on('shown.bs.modal', function(e){
+		$('body').css({'background':'#aaf'})
+	});
+
+	$("#mymodal2").on('hidden.bs.modal', function(e){
+		$('body').css({'background':'#faa'})
+	});
+
+</script>
+</html>

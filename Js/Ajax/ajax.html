@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style>
+	div{
+		border:1px solid;
+		width: 400px;
+		height: 400px;
+	}	
+</style>
+<body>
+	<div id="divid"></div>	
+	<br>
+	<button id="btn">获取数据</button>
+</body>
+<script>
+	var obj = document.getElementById("btn");
+	var divobj = document.getElementById("divid");
+	obj.onclick = function(){
+
+		//1.生成xhr对象
+		var xhr = new XMLHttpRequest();
+
+		//2.给xhr加readystatechagne事件
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState==4 && xhr.status==200) {
+				//5.用xhr获取从php响应的数据
+				// divobj.innerHTML = xhr.responseText;
+				   alert(xhr.responseText);
+				// alert(xhr.responseText);
+			}
+		}
+
+		//3.用xhr的open方法连接php页面
+		xhr.open("get","ajax.php",true);
+
+		//4.用xhr的send方法真正像index.php发起请求
+		xhr.send();
+
+
+	}
+
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+
+		}
+		img{
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img id="imgid" src="" />
+	</div>	
+
+	<script>
+		var imgobj = document.getElementById('imgid');
+
+		setInterval("settime()", 1000);
+
+		function settime(){
+			var idx = Math.ceil(Math.random()*3);
+			imgobj.src = idx+".jpg";
+		}
+	</script>
+</body>
+</html>

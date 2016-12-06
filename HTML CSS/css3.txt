@@ -1,0 +1,189 @@
+-----------------------------
+<video src='' controls width=''></video>
+<audio src='' controls></audio>
+
+//自匹配
+<form action='' >
+	<input type='url/email/search/date/number/color/time' name=''>
+	<input type='url' list='a'>
+	<datalist id='a'>
+		<option lable='' value=''>
+	</datalist>
+</form>
+
+//锚点
+<a name='top'></a>
+<p>aaaaaaaaaaaaaaa</p>
+<a href='#top'><img src='aoye.gif'></a>
+
+
+----------------------------------------------------------------
+选择器：
+
+获得焦点
+input:focus{
+	background:red;
+}
+
+首字母改变
+p:first-letter{
+	font-size:40px;
+}
+首行改变
+p:first-line{
+	color:red;
+}
+
+改变子类
+div:only-child{   //p:last-ch
+	color：red;
+}
+
+表单：
+<input type="text" enabled> 
+/disable /checked
+
+选择非P元素的每个元素
+：not（p）{
+	color:red;
+}
+鼠标选中变颜色
+::selection{
+	color:red;
+}
+
+----------------------------------------------------------------
+边框 ：
+
+边框变软润
+border-radius:4px;
+
+边框阴影
+box-shadow：10px;//水平 10px;//垂直 10px;//模糊距离 10;//阴影尺寸 red;//阴影颜色  | 默认为outside可改inset
+
+图片建边框
+div{
+width:200px;
+height:200px;
+border:10px;
+border-image:url("border.png") 30 30 30 30 round/strech/repeat;
+}
+
+*
+兼容性：
+OPera:-o-
+chrome/safari(苹果):-webkit-
+Firefox:-foz-
+*
+----------------------------------------------------------------
+背景：
+背景图大小
+background-size:10px //x轴 10px //y轴;
+
+背景图规定区域  
+background-origin：content-box;/border-box/padding-box;
+*border-box在最外边 padding-box在中间 content-box在里面*
+----------------------------------------------------
+文本：
+字体阴影
+text-shadow:10px 10px 10px red;
+
+自动换行
+word-wrap:break-word;
+// word-break=break-all;
+
+字体 ：
+自带字体
+@font-face{
+	font-family:fourteen;
+	src:url('msyh.ttf');
+}
+div{
+	 font-family:fourteen;
+}
+-----------------------------------------------------------
+2d:   //注意兼容性
+
+translate元素移动
+transform:translate(100px,100px);
+
+rotate() 元素顺时针旋转
+transform：rotate(30deg);	
+
+scale() 元素尺寸缩放
+transform-scale(2,4); //宽两倍，高四倍
+
+skew() 元素翻转
+transform-skew(30deg,20deg); //x轴和y轴
+----------------------------------------------------------
+
+3d:
+
+rotate旋转
+transform:rotateX(30deg,0deg);
+transform:rotateY(30deg,0deg);//x y不能同时旋转
+
+------------------------------------------------------------
+过渡：transition
+div{
+	width:100px;
+	height:100px;
+	background:red;
+	transition:width 2s, height 4s,background 5s;
+}
+div:hover{
+	width:400px;
+	height:400px;
+	background:green;
+}
+----------------------------------------------------------------
+动画： * 兼容 *
+            //取名
+ @keyframes fourteen{
+	 from{background:red;}
+	 to{background:green;}
+
+	 //
+		 0%{background:url(a.gif);}
+		 50%{background:url(b.gif);}
+		 100%{background:url(c.gif);}
+
+	 //
+  }
+	* @-webkit-keyframes fourteen{
+			 from{background:red;}
+			 to{background:green;}
+		   }
+ div{
+
+ }		   
+ div:hover{              //循环播放
+ 	animation:fourteen 5s inifnite;
+ 	   *  -webkit-animation:fourteen 5s;
+ }
+-----------------------------------------------
+多列：*兼容*
+
+文字分成几列
+column-count:3;   分成三列
+
+列之间的间隔
+count-gap:30px;
+
+列之间的间隔条
+count-rule:10px groove blue;  //groove线条类型
+
+---------------------------------------------------------
+用户：
+
+调整div大小
+resize:both;
+
+div自动调整
+box-sizing:border-box;
+
+给div加个外边框
+outline:2px solid blue;
+outline-offset:15px;
+
+

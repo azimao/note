@@ -1,0 +1,69 @@
+表记录：一行
+表字段：一个
+表结构：第一排  id name 规定输入的内容
+
+表结构  //列信息
+表数据  //行信息
+表索引  //把列中的行加到索引中（一般加id这一列）
+
+------------------------------------------
+net stop mysql   //关闭Mysql
+
+net start mysql  //开启mysql
+------------------------------------------
+创建数据库
+
+进入数据库
+mysql -uroot -p320199(密码)
+
+show databases;   显示数据库
+
+create database azimao;  创建数据库
+
+use azimao;    切换数据库
+
+drop database azimao;    删除数据库
+
+
+----------------------------------------------
+创建表
+
+use test   使用test文件
+  
+show tables;  显示表
+
+
+创建表
+  //user 为表名
+create table user(
+id int,
+name varchar(30)，
+pass varchar(30)
+);
+
+rename table user to tiancaiazimao; 修改表名
+
+drop table tiancaiazimoa;  删除表
+ 
+显示表字段  （属性）
+desc user;
+
+查看表里面有多少数据
+select * from user;
+
+写数据
+insert into user(id,name,pass) values(2,"maoyu","123");
+
+查询数据
+select * from user where id=2;
+
+删除数据
+delete from user where id=2;
+
+修改名字  修改密码
+update user set name='maoyu' where id=2;
+update user set pass='111' where id=2;
+---------------------------------------------------------
+
+
+

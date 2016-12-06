@@ -1,0 +1,17 @@
+
+一.config.php
+配置文件：
+	1. 
+		// 系统默认的变量过滤机制
+		'DEFAULT_FILTER'        => 'htmlspecialchars'
+
+
+二.   控制模板（view）
+	$this -> theme("demo2") -> display();
+
+	在view模板（html）里面 直接使用函数前面要加 ：
+	例：  {:phpinfo()} {:date('Y-m-d')}
+
+三. 在模板内调用自己写的函数
+	在项目的 Common 下新建一个 function.php 即可在模板里面调用
+		Home/Common/function.php

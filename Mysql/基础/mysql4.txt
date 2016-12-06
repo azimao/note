@@ -1,0 +1,51 @@
+php操作数据库
+---------------------------------
+1.通过PHP连接mysql数据库
+mysql_connect("localhost","root","320199");
+
+2.选择数据库
+mysql_select_db("test");
+
+3.设置客户端和连接字符集
+mysql_query("set names utf8");
+
+4.通过PHP进行insert操作
+insert into t1(username,password) values(user1,'123');
+
+5.执行这条sql语句
+mysql_query($sql);
+
+6.释放连接资源
+mysql_close($conn);
+
+
+从结果中取数据：
+mysql_fetch_assoc  //关联数组
+mysql_fetch_row   //索引数组
+mysql_fetch_array //混合数组
+mysql_fetch_object //对象
+
+从结果集中取全部数据
+while($row=mysql_fetch_assoc($result)) {
+	echo "<pre>";
+	print_r($row);
+	echo "</pre>";
+}
+
+
+mysql_insert_id();  //取得上一步 insert 操作产生的id
+
+mysql_affected_rows();  //得到insert delete update操作影响到的行数 
+
+mysql_num_rows(); //得到select操作影响到的行数
+
+
+*【实例】
+用户分页显示
+
+
+
+*【实例】
+用户模块管理
+
+--------------------------------------------------------------------

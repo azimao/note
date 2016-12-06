@@ -1,0 +1,114 @@
+1.	
+	var/$/String    str = "hello world WORLD,Hello World,Hello world.";
+	js中的正则：
+		var pattern=/world/g;
+		var	result=str.match(pattern);   //result为匹配后得到的结果 
+
+	php中的正则：
+		$pattern = "/world/";
+		preg_match_all($pattern, $str, $result); //result为匹配后得到的结果 
+		//preg_match_all为匹配所有的world
+
+	java中的正则：
+		Pattern p = Pattern.compile("world");
+		Matcher m = p.metcher(str);
+		while(m.find()){
+			System.out.println(m.group());
+		}
+
+	匹配w开头d结尾的单词
+	js:
+		var pattern = /w\w+d/g;
+
+	php
+		$pattern = /w\w+d/;
+
+	java
+		Pattern p = Pattern.compile("w\\w+d"); // \ 需要转译，所以需要多加\
+
+2. \w 代表 匹配 字母. 数字. 下划线
+   \w+ 代表 匹配 多个 字母. 数字. 下划线
+   \w{3} 代表 只有3个匹配的字母
+   \W  代表非 字母. 数字. 下划线
+   \s 代表 匹配 任意一个空格   
+   \S 匹配任意不是空白符的字符
+   \s+ 代表 匹配 任意一个空格 或 多个  
+   "." 代表 除\r\n 外的任何单个字符. 配合一个+就为匹配多个
+   ^ 代表开始符
+   $ 代表结束符
+   \d表示0-9的数字 
+   ? 代表0个或1个
+   		(?:)?  代表可有可无
+   + 代表一个或多个
+   * 代表0个或多个
+
+   i表示不区分大小写
+   [A-Z] 匹配一个A-Z中的一个大写字母
+   [a-z] 匹配一个a-z中的一个小写字母
+   [^A-E] 表示不再A-E范围内的字符
+   [jpg|png] 表示匹配 jpg或者png
+   		js:
+   			var pattern = /[A-Z]+/g;   //匹配A-Z多个大写字母
+   			var pattern = /[a-zA-Z]+/g;   //匹配a到z不分大小写的多个字母
+
+
+
+   例1：
+   		不区分大小写：
+	js:
+		var pattern = /w\w+d/ig;
+
+	php
+		$pattern = /w\w+d/i;
+
+	java
+		Pattern p = Pattern.compile("(?i)w\\w+d"); //  js php中也可以用这种写法
+
+
+	例2：
+		匹配中文
+			js:
+				var pattern = /[\u4e00-\u9fa5]/g;   //js中/u表示十六进制
+
+			php:
+				$pattern = /[\x{4e00}-\{x9fa5}]/u;  //php中/x表示十六进制    u表示 utf8
+
+			java：
+				以上两种都可以，不过\需要转译  会多加\
+
+	例3：
+		提取用户名
+		$str="@shenyi  你好 @ddd 大家好";
+
+		php:
+			$pattern = "/@(?<first>\w+\s)/";
+			preg_match_all($pattern, $str, $result); //result为匹配后得到的结果 
+			var_dump($result['first']);  //结果为 0=>shenyi,1=>ddd
+
+		java同上
+
+		js:
+			var pattern = /@(/w+)/g;
+			while(result=pattern.exec(str)){  //当result为假的时候跳出循环
+				alert(result[1]);  //结果为 shenyi,ddd
+			}	
+
+	例4：
+		匹配图片名
+			php:
+				 $str = "<img src='abc.jpg'/><img src='abc.jpn'/><img src='abcde.png'/><img src='abcde.aaapg'/>";
+				 // $pattern ="/<img\ssrc='(?<a>\w{1,5}.[png|jpg]{3})'\/>/";
+				 $pattern ="/<img\ssrc='(?<a>\w{1,5}.(png|jpg))'\/>/";    
+				 //小括号中嵌套小括号，可以作为多选进行匹配
+
+		匹配没有单引号的图片名：
+			php:
+				 $str = "<img src='abc.jpg'/><img src=abc.jpg/><img src='abcde.png'/><img src='abcde.aaapg'/>";
+				 $pattern ="/<img\ssrc=(?:')?(?<first>\w{1,5}.(png|jpg))(?:')?\/>/u";
+
+
+	例5：
+		js去字符串两边的空格
+			var str = "   hello world                   ";
+			var pattern = /^\s+|\s+$/g;
+			console.log(str.replace(pattern, ''));

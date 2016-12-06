@@ -1,0 +1,369 @@
+TP框架：
+1.MVC设计模式
+2.模板引擎
+3.常用操作类
+
+模板引擎和框架的区别
+1.模板引擎只是框架中用来做php和html分离
+
+MVC设计模式：
+M model 数据模型
+V view  视图
+C control 控制器
+
+一般设计模式顺序
+V(HTML模板) --Smarty模板引擎 --> C(PHP逻辑控制) -> M(Model类表操作)
+
+入口定义：
+define("APP_NAME","home");
+define("APP_PATH","./home/");
+define("APP_DEBUG",true);
+include "ThinkPHP/ThinkPHP.php";
+
+地址访问：
+http://localhost/test/index.php/Index/index
+//PATHINFO地址
+
+改变左右定界符：
+ThinkPHP/Conf/convention.php
+  'TMPL_L_DELIM'          => '<{',
+  'TMPL_R_DELIM'          => '}>',
+
+数据库连接有关的配置：
+ThinkPHP/Conf/convention.php
+'DB_TYPE'               => 'mysql',     // 数据库类型
+    'DB_HOST'               => 'localhost', // 服务器地址
+    'DB_NAME'               => 'test',   // 数据库名
+    'DB_USER'               => 'root',   // 用户名
+    'DB_PWD'                => '123',     // 密码
+    'DB_PORT'               => '3306',    // 端口
+    'DB_PREFIX'             => '',      // 数据库表前缀
+
+模板可以使用的路径模板替换：
+——ROOT——
+——APP——
+——URL——
+——ACTION——
+——SELF——
+../Public
+__TMPL__
+
+PHP中可以使用的路径模板替换：
+——ROOT——
+——APP——
+——URL——
+——ACTION——
+——SELF——
+
+*静态资源一定要用网站绝对路径*
+
+改变默认地址模块
+Home/Conf/config.php
+return array(
+'DEFAULT_MODULE'=>'User',
+);
+
+Home/Common/common.php:
+写到它里面的函数可以在本应用中所有模块中操作使用
+
+包含扩展类：
+import("ORG.UTIL.Image");
+//   ThinkPHP/Extend/Library/ORG/Util/Image.class.php
+
+
+在Login模块的所有方法前不执行，但是在所有其他的模块的所有操作之前都要执行
+class CommonAction extends Action{
+	function _initialize{
+		echo "权限把控";
+	}
+}
+class LoginAction extends Action{}
+class IndexAction extends CommonAction{}
+
+-----------------------------------------------------------
+ThinkPHP支持四种URL模式：
+1.普通模式
+http://localhost/test/index.php?m=Index&a=index
+2.PATHINFO
+http://localhost/test/index.php/Index/index
+3.REWRITE
+http://localhost/test/Index/index
+4.兼容模式
+http://localhost/test/?s=/Index/index
+
+REWRITE方式来访问模式和操作：
+1.apache必须支持mod_rewrite.so模块
+LoadModule rewrite_module modules/mod_rewrite.so
+
+2.www网站根目录支持解析rewrite重写表达式文件
+<Directory "c:/wamp/www/">
+    Options Indexes FollowSymLinks ExecCGI
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+注意：Options不能出现Multiviews,AllowOverride All
+
+3. .htacccess里面书写的rewrite表达式
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</IfModule>
+
+REWRITE 方式对网站的seo优化最好：
+http://locahost/test/Index/show.html
+
+1."URL_MODEL" => "2"
+  0 http://localhost/test/index.php?m=Index&a=show
+  1 http://localhost/test/index.php/Index/show
+  2 http://localhost/test/Index/show 
+  3 http://localhost/test/?s=/Index/show
+
+2.a标签或form表单的链接地址如果想做成"URL_MODEL" => "2"
+<a href="<{:U('show','html')}>">Index/show</a>
+
+如果要在模板中使用PHP函数要在函数前面加冒号：
+{:strtoupper('aaaaaa')}
+
+调试模式下的报错页面定制：
+Home/Conf/config.php
+'TMPL_EXCEPTION_FILE' => './Public/error.html',
+
+异常模板中可以使用的异常变量有：
+$e['file']异常文件名
+$e['line'] 异常发生的文件行数
+$e['message'] 异常信息
+$e['trace'] 异常的详细Trace信息
+
+在操作中获取当前地址中的模块和操作：
+1.$_GET[_URL_][0];   //Index
+  $_GET[_URL_][1];   //index
+
+2.MODULE_NAME;
+  ACTION_NAME;
+
+常量：
+  MODULE_NAME;  模块名
+  ACTION_NAME;  方法名
+  IS_GET
+  IS_POST
+  IS_AJAX
+  __ROOT__ 网站根目录地址  
+  __APP__ 当前项目（入口文件）地址  
+  __GROUP__ 当前分组的URL地址  
+  __URL__ 当前模块的URL地址  
+  __ACTION__ 当前操作的URL地址  
+  __SELF__ 当前URL地址  
+  __INFO__ 当前的PATH_INFO字符串  
+  __EXT__ 当前URL地址的扩展名  
+
+
+控模块：
+EmptyAction.class.php
+
+空操作：
+function _empty(){
+  
+}
+
+URL伪静态
+1.地址后面的静态后缀有哪些
+'URL_HTML_SUFFUX'=>'html' 
+
+URL生成
+1.U("show")方法；
+2.U("Test/index")
+3.U("Test/index?id=10")
+4.U("Test/index","id=10")
+5.U("Test/index",array('id'=>'10'))
+
+
+URL路由 
+
+
+URL重定向：
+$this->redirect('show','','5','正在跳转');
+
+页面跳转
+$this->success('yes',U('show'),5);
+$this->error('no',U('show'),5);
+
+URL区分大小写
+'URL_CASE_INSENSITIVE' = true/false    不区分/区分
+
+跨模块调用：
+A("Test");
+$test->index()'
+A("项目中的模块");
+
+$test=R("Test/index");
+R("模块中的方法");
+
+修改Dbmysql.class.php:
+public function escapeString($str) {
+        if (get_magic_quotes_gpc()) {
+            return $str;
+        }
+
+        if($this->_linkID) {
+            return mysql_real_escape_string($str,$this->_linkID);
+        }else{
+            return mysql_escape_string($str);
+        }
+    }
+//   a"b     "多加\问题
+
+---------------------------------------------------------
+杂项
+
+M方法：
+$user=new Model('User');
+$user=M('User');
+
+D方法：
+$user=new UserModel('User');
+$user=D('User');
+
+$model->getLastSql();
+//获取model操作的最后一条sql语句
+
+protected $tableName='user';
+//设置model类在组合sql时真实的表明
+
+获取数据的主键
+$user->getPK();
+
+
+$user->create();
+1.生成model对象中的数据对象date，它可以智能过滤post中与表字段不相符的下标
+2.字段映射
+3.自动完成
+4.自动验证
+
+添加数据的两种方法：
+1.
+$_POST['username']='user1';
+$_POST['password']='123';
+$_POST['regtime']=time();
+
+$user=M('User');
+$user->add($_POST);l
+
+2.
+$_POST['username']='user1';
+$_POST['password']='123';
+$_POST['regtime']=time();
+
+$user=M('User');
+$user->create();
+
+$user->add();
+
+
+2.字段映射
+UserModel.class.php:
+class UserModel extends Model{
+  protected $_map=array(
+      'name'=>'username',
+      'word'=>'password',
+  );
+}
+
+3.自动完成
+UserModel.class.php:
+class UserModel extends Model{
+  protected $_auto=array(
+      array('password','md5','3','function'),
+      array('regtime','time','3','function'),
+  );
+}
+
+4.自动验证
+UserModel.class.php:
+class UserModel extends Model{
+  protected $_validate=array(
+      array('username','require','用户名不能为空'),
+      array('username','checkLenght','用户名长度不能小于六位',2,'callback'),
+      array('fcode','require','验证码不能为空'),
+      array('password','require','密码不能为空'),
+      array('repassword','require','密码不一致',2,'confirm'),
+      array('fcode','checkCode','验证码不能为空',2,'callback'),
+  );
+}
+
+function checkCode($fcode){
+    if($fcode!=$_SESSION['scode']){
+        return false;
+    }
+}
+
+function checkLenght($username){
+    if(strlen($username)<6){
+      return false;
+    } 
+}
+
+protected $patchValidate=true;
+
+配合前端验证的控制器代码：
+$user=D('User');
+if($user->create()){
+  $user->add();
+}else{
+    echo "<pre>";
+    print_r($user->getError());
+    echo "</pre>";
+}
+
+-------------------------------------------------------
+CURD操作 create update select delete
+
+insert: (add)
+1.$model->add($_POST);
+
+2.$model->create();
+  $model->add();
+
+update: (save)
+1.$user->create();
+  $user->save();
+2.$user->save($_POST);
+
+select:(select)
+$rows=$user->select($id);
+
+find: (find)
+1.$rows=$user->find(); //默认表中的第一行
+2.$rows=$user->find($id);
+3.$rows=$user->where("id={$id}")->find();
+
+delete: (delete)
+1.$user->delete($id);
+2.$user->where("id={$id}")->delete();
+3.$user->where(array('id'=>$id))->delete();
+
+左链接：
+原始：
+select user.username,score.num from user left join score on user.id=score.uid;
+
+tp:
+$user->join('score ON user.id = score.uid')->select();
+
+控制器关联模型：
+
+
+
+试图：
+$this->assign('name','user1');
+$this->name='user1';
+
+$this->display();
+$this->display('show');
+$this->display('Test:index');
+
+$str=$this->fetch();
+
+模板引擎：

@@ -1,0 +1,8 @@
+1. git config --global user.name/email "用户名/邮箱"
+
+   git init 初始化项目 建好一个项目
+   mkdir readme   新建一个readme文件
+   git add readme 提交到仓库    		get add * 全部加入仓库
+   git commit -m "提示"				   	git commit -a -m "提示"     提交备注
+   git remote add origin(别名)  路径
+   git push origin master(主分支)

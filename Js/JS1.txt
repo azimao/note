@@ -1,0 +1,57 @@
+1. js基础对象：
+  window  窗口对象
+  document 文档对象
+  document.documentElement  html对象
+  document.body   body对象
+  document.head  head对象
+
+
+2.定义对象的方法
+	第一种：
+	alert(window.document.documentElement);
+
+	第二种:
+	var obj = new Object();
+	alert(obj);
+
+	第三种：
+	var obj = {
+		"name":"maoyu",
+		"age":"22",
+		"sex":"man",
+	};
+	alert(obj.age);
+
+
+3.global方法里面可以直接调用的方法：
+	(1). parseInt(); 把字符串强制转整型
+		var num = "10px";
+		alert(parseInt(num));   //10
+
+	(2). parseFloat(); 把字符串强制专浮点型
+
+	(3). typeof();  测试变量类型
+
+	(4). eval();   执行字符串
+
+	(5) String();  Number();  Array(); Object();
+		Boolean();
+
+	转布尔类型后哪些为假：
+		0   false   ""
+		NaN  nudefined   null
+
+	转布尔类型的方法：
+	(1).  Boolean(num);
+	(2).  !!num;
+
+  *
+  	num = 10;
+	delete num;     delete不能删除带var的变量
+
+
+4. JS弹窗
+
+	(1).alert()      警告
+	(2). confirm()   确认
+	(3). prompt()	 提示

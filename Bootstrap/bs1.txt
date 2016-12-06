@@ -1,0 +1,329 @@
+ 安装:
+<link rel="stylesheet" href="bs/css/bootstrap.css">
+<script src="bs/js/jquery.min.js"><script>
+<script src="bs/js/bootstrap.js"><script>
+
+移动端设备的真实宽度：
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+布局容器：
+ 	.container     相当于main
+
+一.css样式
+
+	栅格系统：
+
+		<div class="row">   //row占12格
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+		</div>
+
+		//左边8格空出
+		<div class="row">   //row占12格
+			<div class="col-md-4 col-md-offset-8"></div>
+		</div>
+
+		//左边8格空出   pull-right/left  向左向右浮动
+		<div class="row">   //row占12格
+			<div class="col-md-4 pull-right"></div>
+		</div>
+
+
+	排版：
+		1.标题（page-header）
+		2.段落（.lead）
+		3.mark标记
+		4.del删除线
+		5.s无用文本  //等于删除线
+		6.ins下划线
+		7.small小号字体
+		8.文本大小写
+		9.无样式列表
+	   10.内联列表
+	   11.自定义列表
+	   12.水平排列列表
+	   13.文本对齐
+	   		text-left/right/center
+
+
+	代码：
+		1.code
+		2.pre
+		3.kbd
+
+	表格：
+		table
+		table-striped
+		table-bordered
+		table-hover
+		table-respansive //响应式表格  单独一个div
+
+	表格颜色:
+		.info
+		.success
+		.active
+		.warning
+		.danger
+
+	响应式表格:
+		<div class="table-responsive">
+			<table class="table">
+			</table>
+		</div>
+
+	表单：
+		.form-inline 横排显示
+
+		.form-horizontal 
+		.control-label   水平排列
+
+		<div class="form-group">
+			<label>用户名</label>
+			<input type="text" class="form-control" placeholder="username" />
+		</div>
+
+		.has-error   //表单框颜色
+
+		.input-lg   //表单框大小
+	按钮：
+		.btn
+		.btn-default
+		.btn-primary
+		.btn-info
+		.btn-success
+		.btn-warning
+		.btn-danger
+		.btn-link   //和a标签一样 
+
+		.btn-lg  大按钮
+		.btn-sm  小按钮
+		.btn-xs  超小按钮
+
+		.btn-block //独占一行button
+
+		disabled  //禁用属性 
+		<button class="btn btn-block" disabled></button>
+
+		可以使用按钮属性的有：   <a></a>   <input type="button"/> <input type="submit"/> <input type="reset"/>
+
+	图片：
+		.img-rounded  //圆润正方形
+		.img-circle   //圆形
+		.img-thumbnail //内嵌框正方形
+
+		img-responsive   //图片自适应大小
+
+	辅助类：
+		文本颜色：
+			text-muted   //灰色
+			text-primary
+			text-success
+			text-info
+			text-warning
+			text-danger
+
+		背景颜色：
+			bg-primary
+			bg-success
+			bg-info
+			bg-warning
+			bg-danger
+
+		关闭号/称号  x：
+			&times;
+		.close //直接加上关闭样式
+
+		更多号/小箭头/下三角：
+		.caret
+
+		浮动：
+			.pull-right/left
+
+		清除浮动：
+			.clearfix
+
+		快标签居中：
+			.center-block
+
+		显示、隐藏
+			.hide / .show
+
+二. css组件
+	 glyphicons图标：  //字符图标
+		<span class="glyphicons   ..." style="coloro:red;"><span>
+
+	 下拉菜单：
+	 	.dropdown
+	 	.dropup
+	 	.dropdown-menu
+	 	.divider  //分割线
+	 	.dropdown-header  //标题
+	 	.disabled  //禁用
+	 	[data-toggle="dropdown"]  //js触发下拉事件
+
+	 	<div clas="dropdown">
+	 		<button class="btn btn-primary" data-toggle="dropdown">更多课程 <span class="caret"></span></button>
+
+	 		<ul class="dropdown-menu dropdown-menu-right">
+	 			<li>阿滋猫</li>
+	 			<li>阿滋猫</li>
+	 			<li class="divider">阿滋猫</li>
+	 			<li class="dropdown-header">标题</li>
+	 			<li>阿滋猫</li>
+	 			<li>阿滋猫</li>
+	 			<li class="disabled">阿滋猫</li>
+	 		</ul>
+	 	<div>
+
+	 按钮组：
+	 	.btn-toolbar  //按钮工具箱
+	 		.btn-group   //一组按钮
+
+	 		尺寸：
+	 		.btn-group-lg
+	 		.btn-group-sm
+	 		.btn-group-xs
+
+	 		嵌套：
+	 		.dropdown-toggle
+
+	 	.btn-group-vertical  //垂直按钮组
+
+	 	.btn-group-justified //两端对齐按钮组
+	 			.btn-group 
+
+
+	 	)按钮下拉菜单：
+	 		把文字和箭头分成两个button
+
+
+	  输入框组：
+	  	.input-group
+	  	.input-group-addon
+	  	.input-group-lg
+	  	.input-group-sm
+	  	.input-group-btn 
+
+	   (搜索框)
+	  	 <div class="input-group">
+	  	 	<input type="text" class="form-control"/>
+		  	 <div class="input-group-btn">
+		  	 	<button class="btn btn-danger">GO<span class="caret"></span></button>
+		  	 	<ul class="dropdown-menu">
+		  	 		<li><a herf="">linux</li>
+		  	 	</ul>
+		  	 </div> 
+	 	 </div>
+
+	 导航：
+	 	.nav
+	 	.nav-tabs
+	 	.nav-pills
+	 	.nav-stacked
+
+	 	标签页导航：
+	 		.row{
+	 			display:none;
+	 		}
+	 					或者：nav-pills
+	 		<ul class='nav nav-tabs'>
+	 			<li class='active'>
+	 				<a href="">linux</a>
+	 			</li>
+	 			<li class=''>
+	 				<a href="">php</a>
+	 			</li>
+	 			<li class=''>
+	 				<a href="">java</a>
+	 			</li>
+	 		</ul>
+	 		<div class="row">
+	 			<p>linux</p>
+	 		</div>
+	 		<div class="row">
+	 			<p>php</p>
+	 		</div>
+	 		<div class="row">
+	 			<p>java</p>
+	 		</div>
+
+	 		<script>
+
+	 		<script>
+
+	 		<script>
+	 			$("li").mouseenter(function(){
+	 				$(this).addClass('active');
+	 				$('li').not($(this)).removeClass('active');
+
+	 				idx = $(this).index('li');
+	 				$('.row').eq(idx).show(500);
+	 				$('.row').not($(this)).eq(idx).hide();
+	 			});
+ 				$('.row').eq(0).show(500);
+	 		</script>
+
+
+	 	导航条：
+	 		<nav class="navbar navbar-default">
+	 			<div class="navbar-header">
+
+	 			</div>
+	 		</nav>
+
+	 	手机探测分辨率  ：   全局<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+	 		路径导航：
+	 			.breadcrumb
+
+	 		分页：
+	 			.pagination
+	 			.pagination-lg
+	 			.pagination-sm
+
+	 			<ul class="pagination">
+	 				<li><a hrep="">$laqo</a></li>
+	 				<li><a hrep="" class="active">1</a></li>
+	 				<li><a hrep="">2</a></li>
+	 				<li><a hrep="">3</a></li>
+	 				<li><a hrep="">4</a></li>
+	 				<li><a hrep="">5</a></li>
+	 				<li><a hrep="">$raqo</a></li>
+	 			</ul>
+
+	 		标签：
+	 			.label
+	 			.label-danger
+
+	 		徽章：
+	 			. badge
+
+	 		巨幕：
+	 			.jumbotron
+
+	 		缩略图：
+	 			.thumbnail 
+
+	 		警告框： (9)
+	 			.alert
+	 			.alert-danger
+
+	 		进度条：
+	 			.progress-bar
+	 			.progress-bar-danger  //颜色
+	 			.progress-bar-striped //条纹
+
+	 	媒体图像：
+	 		.media
+
+	 	嵌入视频：
+
+
+	 js插件：
+
+	 	模态框：（弹框）
+	 		
+
+

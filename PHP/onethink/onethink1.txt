@@ -1,0 +1,7 @@
+1.关闭页面显示性能模式：
+	'SHOW_PAGE_TRACE' => true,
+
+2.登陆时验证码一直显示错误：
+	要配置common和user下的配置文件
+	\Application\Common\Conf\config.php（整站公用配置文件），
+	\Application\User\Conf\config.php（Ucenter配置文件，即为处理登录的配置文件）。

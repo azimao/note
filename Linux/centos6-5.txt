@@ -1,0 +1,22 @@
+1. 设置时间
+	cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime      设置为上海时区
+	date -s 22:56:32       
+	date -s 07/11/2016     设置时间和日期
+	clock -w  强制将时间写入COMS！
+
+2.权限
+	chmod:
+		r:read就是读权限 --数字4表示
+		w:write就是写权限 --数字2表示
+		x:excute就是执行权限 --数字1表示
+
+	chown -R mysql:mysql logbin    
+	修改群组和用户 	
+
+	mysql --help | grep my.cnf
+
+3.设置网络
+	
+
+
+

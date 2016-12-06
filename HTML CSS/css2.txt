@@ -1,0 +1,75 @@
+---------------------------------------------------
+ 列表样式
+ list-style-type:none; //去掉列表前面的. 数字 字母
+ text-decoration:none;
+-------------------------------------------------------------
+尺寸(块标签)
+ width:30px;
+ height:30px;
+ //min-width max-width
+-----------------------------------------------------------
+表格
+border-collapse：collapse; //边框是否合并
+border-spacing   //表格边框之间的距离
+----------------------------------------------------------
+ textarea文本框
+ resize:none;  //限制拖动 
+------------------------------------------------------
+ 漂浮
+ float:left/right;
+脱离文档流：clear:both;
+ --------------------------------------------------------
+ 外边距
+ margin:10px//上下 20px//右左
+ margin-top/right/bottom/left
+ 内边距
+ padding-top/right/bottom/left
+ ------------------------------------------------------- 
+ 滚动条
+        //自动  超出隐藏
+ overflow：auto|hidden|visible|scroll
+
+ -----------------------------------------------------------
+ 显示
+ display:block/inline;  //把快标签和行标签相互转换
+ display:none;  //非占位隐藏
+ visibility:visible;
+
+ div{
+ 	width:400px;
+ 	height:400px;
+ 	background:#ccc;
+ 	display:inline;
+ }
+ span{
+ 	width:400px;
+ 	height:400px;
+ 	background:#ccc;
+ 	display:block;
+ }
+------------------------------------------------------------
+隐藏
+ 1)占位隐藏
+ visibility:hidden;
+ 2)不占位隐藏
+ dispaly:none;
+ 定位
+ 绝对定位
+ position:absolute;
+ top:10px;
+ left:10px;
+ 相对定位
+ position:relative;
+ top:10px;
+ left:10px;
+ z轴坐标
+ z-index：5；值大的就在最上面
+
+-------------------------------------
+鼠标放上去的时候显示
+ul2{
+	display:none;
+}
+.li:hover .ul2{
+	display:block;
+}  //li鼠标放置地，ul2是显示物

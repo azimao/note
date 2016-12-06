@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button style="background:#f00">红</button>
+	<button style="background:#0f0">绿</button>
+	<button style="background:#00f">蓝</button>
+	<button style="background:#f0f">紫</button>
+	<button style="background:#0ff">青</button>	
+	<img src="a.jpg" style="dispaly:none;position:absolute;" id="divid">
+</body>
+<script>
+	var divobj = document.getElementById("divid");
+	document.oncontextmenu = function(event){
+		var x = event.clientX;   //获取坐标方法
+		var y = event.clientY;
+		divobj.style.dispaly = "block";
+		divobj.style.top = y+"px";
+		divobj.style.left = x+"px";
+		return false;
+
+	}	
+</script>
+</html>

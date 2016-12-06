@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="b.jpg" id="imgid">
+	<div>
+		<ul id="content">
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+			<li>aaaaaaaaaaa</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var imgobj = document.getElementById("imgid");
+	var contentobj = document.getElementById("content");
+	imgobj.onclick = function(){
+		var imgsrc = this.getAttribute("src");
+		if (imgsrc == "b.jpg") {
+			this.src = "a.jpg";
+			contentobj.style.display = "block";
+		}else{
+			this.src = "b.jpg";
+			contentobj.style.display = "none";
+
+		}
+	}
+</script>
+</html>

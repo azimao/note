@@ -1,0 +1,95 @@
+﻿1 css的样式作用方式
+1.head中放style标签(内部)
+<style>
+	span{
+		font-size: 50px
+	}
+</style>
+
+2.在标签身上加style属性（内联）
+<span style="font-size:50px">aaaaaaa</span>
+
+3.外链接一个css文件（外部）
+<link rel="stylesheet" href="index.css">
+
+index.css
+span{
+	font-size:50px;
+}
+
+css优先级
+1.内联
+2.内部或者外部     //谁离标签近，谁的优先级就高
+3.精确匹配大于迷糊匹配    //*为模糊匹配
+4. 内联（style）>id > class > 标签 > * 标签选择器 类...id..标签...  //修改样式 内联（style）优先级最高
+关联选择器：
+<style>
+	div h1{
+
+	}
+</style>
+组合选择器：
+<style>
+	span,h1,div{
+
+	}
+</style>
+选择器：标签 ID 类 关联 组合 伪类（a:hover{color:red}
+）
+
+
+//超链接鼠标放上去颜色
+<style>
+a:hover{color:red}
+</style>
+<a href=''></a>
+
+css长度：
+1.px  //像素
+2.em   //倍数   1em=16px
+
+------------------------------------------
+字体 （font）
+1.font-family  //字体类型
+2.font-size   //字体大小
+3.font-style //字体风格
+4.font-weight  //字体加粗
+5.字体里面直接写 color:red;
+
+颜色：
+color:red;/#ff0000/rgb(255,255,255,30);/rgba(255,255,255,60);
+
+背景 （background）
+1.background-color  //背景颜色
+2.background-image:url(image/hehe.jpg); //背景图片
+background-repeat:no-repeat;     //不让背景重复
+3.background-attachment：fixed  //固定图片
+4.background-position:水平方向：left/center/right  垂直 方向：top/center/bottom    像素：50px 80px  百分比：50% 50%   //背景图片定位
+
+文本
+1.letter-spacing:   //字间距
+2.word-spacing:    //单词间距
+3.text-decoration:none;  //去掉a标签的下划线
+				 ：underline;//加下划线
+				 ：voerline; //上划线
+				 :lind-through; //删除线
+4.text-align: left/center/right   //文本居中
+5.line-height:    ???  //行高
+6.text-indent：40px;    //p标签首行缩进
+7.word-break:break-all;  //自动换行
+
+*.  margin:0 auto;    //div居中
+
+边框
+1.border-style:none|dotted|dashed|solid|double|inset|outset //没有 点 虚线 实线 双实线
+2.border-left/right/bottom/top      //上下左右边框
+3.border-color
+border：1px solid red;   
+
+鼠标（cursor） cursor:text;
+1.crosshair  //十字形状
+2.pointer  //小手形状
+3.text   //文本
+4.wait    //等待
+5.default  //默认
+6.help   //帮助

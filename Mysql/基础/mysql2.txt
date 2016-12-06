@@ -1,0 +1,113 @@
+mysql设计
+------------------------------------
+数值
+
+int类型
+float类型
+
+字符串
+
+char(30)	//直接占用30个字节 
+varchar(30)	//最多只能写30位
+text 65535字节
+longtext 42亿字节
+ 
+时间和日期
+date
+time 
+datetime
+year
+//建议日期类型存int
+--------------------------------------------
+字段属性
+
+unsigned  //无符号，全是正数
+
+zerofill  //零填充，int(3),不够3位补0
+
+auto_increment  //自增
+
+null  //这一列的值允许为null
+
+not null   //这一列的值不允许为null
+
+default  //设置默认值  当不允许为空的时候一定要设置默认值
+
+---------------------------------------------------------------
+查看服务器端的基本信息
+
+\s;
+Server characterset: 	utf8
+//服务器字符集
+Db characterset: 	utf8
+//数据库字符集
+Client characterset:	utf8
+//客户端字符集
+Conn. characterset:		utf8
+//客户端连接字符集
+
+查看数据库字符集 	
+show create database test;
+
+查看表字符集
+show create table user;
+
+[mysql]
+default-character-set = utf8
+//客户端和连接字符集
+
+[mysqld]
+character-set-server = utf8
+//服务器，数据库和表字段字符集
+
+collation-server = utf8_general_ci
+//服务器、数据库和表校验字符集
+
+PHP中设置客户端和连接字符集
+$sql="set names utf8";
+
+---------------------------------------------------------
+表字段索引
+
+主键索引  
+
+
+检测sql语句
+desc select * from t where id=3|G  //叫|G把表列显示
+//rows 1 代表检索一行就找到了  
+
+ 创建带索引的表
+ mysql> create table t2(
+ 	->	id int unsigned auto_increment,
+ 	->	name varchar(30),
+ 	->	primary key(id),
+ 	->	index in_named(name)
+ 	->	);
+
+ mysql帮助
+ ？show
+
+ 查看一个表中的所有索引
+ show　index from t2;
+
+ 后期维护索引
+
+1.添加普通索引
+ mysql>  alter table t2 add index in_name(name);
+
+2.删除普通索引
+mysql>  alter table t2 drop index in_named;
+----------------------------------------------------
+表字段
+
+添加字段
+mysql> alter table t2 add age int;
+
+修改字段
+mysql> alter table t2 modify age int not null default 20;
+
+删除字段 
+mysql> alter table t2 drop age;
+
+**修改字段名(name)**
+mysql> alter table t change name username varchar(30);

@@ -1,0 +1,69 @@
+一.JS内置对象
+
+	1.数学对象
+
+	Math.ceil();  取大整
+	Math.floor(); 取小整
+	Math.round(); 去约等于
+	Math.random();  取随机
+
+		从数组中随机取出一个数：
+		var arr = ["a","b","c","d"];
+		var suiji = Math.flool(Math.random()*array.lenght);
+		alert(arr[suiji]);
+
+
+	2.日期对象
+
+	getFullYear();
+	getMonth()+1;
+	getDate();
+	getHours();     
+	getMinutes();
+	getSeconds();
+
+	定时器：
+	setInterval();
+	clearInterval();
+
+	超时器：
+	setTimeout();
+	clearTimeout();
+
+二.  字符串和数组函数
+
+	1.字符串函数：
+	属性：
+	length
+
+	方法：
+	indexOf();  查找字符串出现的位置
+	lastIndexOf(); 查找字符串最后出现的位置
+	substr(字符串,第几个开始，截取的几个);
+	slice(字符串，第几个开始，截取到第几个结束);
+
+	2.数组函数：
+	属性：
+	arr.lenght
+
+	方法：
+	pop();   弹出数组最后一个元素
+	push();  从最后添加一个元素
+	shift(); 从开头删除一个元素
+	unshift();  从开头添加一个元素
+	slice();  从数组中截取一部分元素
+	concat(); 连接多个数组 
+	reverse(); 翻转数组
+	sort();   数组元素排序
+	splice(); 删除并替换数组元素
+
+**	sublime快捷键
+		h1[id=$]{$}*5
+		//中括号里面是属性，大括号里面是值，*5表示5个h1
+		<h1 di="1">1</h1>
+		<h1 di="2">2</h1>
+		<h1 di="3">3</h1>
+		<h1 di="4">4</h1>
+		<h1 di="5">5</h1>
+
+		js里面的内置对象最好不要送for in 遍历

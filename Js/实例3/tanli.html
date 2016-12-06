@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="imgid" style="position:absolute;">
+		<img src="c.png"  style="width:60px;height:60px;">
+	</div>
+</body>
+<script>
+	var xv = 4;
+	var yv = 20;
+	var x = 0;
+	var y = 0;
+	var h =document.documentElement.clientHeight-60;
+	var w =document.documentElement.clientWidth-60;
+	var imgobj = document.getElementById("imgid");
+
+	setInterval(function(){
+		x+=xv;
+		y+=yv;
+		if (x >= w) {
+			x = w;
+			xv = -xv;    //当x大于可视宽度是开始执行-xv,执行到x<=0时第二个if语句触发
+		};
+		if (x <= 0) {
+			xv = -xv;
+		};
+
+		if (y >= h) {
+			y = h;
+			yv = -yv;
+		};
+		if (y <= 0) {
+			yv = -yv;
+		};
+		imgobj.style.left = x+"px";
+		imgobj.style.top = y+"px";
+
+
+	},50);
+</script>
+</html>

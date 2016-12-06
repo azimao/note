@@ -1,0 +1,62 @@
+
+
+	1.document.getElementById();
+	2.document.getElementByTagName();
+	3.document.getElementByClassName();
+
+	获取页面上的所有元素：
+	document.getElementByTagName("*");
+
+	元素对象的常用属性：
+	obj.innerHTML;    获取对象内的标签和内容
+	objs.length;      获取对象内的元素个数
+	obj.outerHTML;    获取对象外的标签    
+	obj.textContent;  获取对象内的内容
+	obj.tagName;      获取对象的标签名
+
+	测试一些高度：
+	obj.clientHeight;    本身的高
+	obj.offsetHeight;    包含边框的高
+
+	document.body.clientHeight   body的高
+	document.documentElement.clientHeight  可视区域的高
+	document.documentElement.scrollHeight   出现滚动条时的总高度
+	document.documentElement.scrollTop      已经滚动了的高度
+	//document.body.scrollTop  (谷歌中获取已经滚动了的高度)
+
+
+	js三种对象：
+	1.obj = new Object();
+	2.obj = document.getElementById("imgid");
+	3.obj = {"name":"user1"};
+
+	阻止浏览器默认行为：
+	1.<a href="index.php" onclick="return false;">超链接</a>
+
+	2 aobj.onclick = function(event){
+		event.preventDefault();
+	}
+
+
+
+	触发事件：
+
+	onerror     文档或图片加载失败时触发
+	onlaod    	网页加载完毕事件
+
+	onfcous     鼠标获得焦点    //focus();  获得焦点方法
+	onblur      鼠标失去焦点  
+	onselect    文本被选定		//select(); 在文版框内可以选择value
+	onsubmit    表单提交时触发
+	onreset    	表单重置时触发 
+	inchange    用户改变域的类容
+	onresize    当窗口大小变化时触发
+
+	onclick     鼠标点击事件
+	ondblclick  鼠标双击事件
+	oncontextmenu 鼠标点击右键事件
+	onmousemove  鼠标移动事件
+	onmouseover  鼠标被移动到某个元素之上
+	onmouseout   鼠标离开某个元素
+
+	onkeydown 某个键盘的键被按下时

@@ -1,0 +1,227 @@
+1.入口文件 index.php
+
+echo "<meta charset = 'utf-8' />";  
+或者  header('content-type:text/html;charset=utf-8');
+//设置字符编码
+
+define('APP_PATH', './项目名/');    //生成项目目录
+
+define('APP_DEBUG', true);     //开启调试模式
+
+require './ThinkPHP/ThinkPHP.php';
+或者： include("../Think/thinkPHP.php");
+
+
+
+2.Controller里面的class类头文件
+
+  namespace Home\Controller;
+  use Think\Controller;
+
+
+3.系统常量：
+	 '__ROOT__'  		=>  __ROOT__
+	 '__APP__'   		=>  __APP__
+	 '__MODULE__'   	=>  __MODULE__
+	 '__ACTION__'   	=>  __ACTION__
+	 '__CONTROLLER__'   =>  __CONTROLLER__
+	 '__URL__'  		=>  __CONTROLLER__
+	 '__PUBLIC__'   	=>  __ROOT__.'/Public'
+
+
+	常用常量：
+当前请求地址  __SELF__    /index.php/Home/goods/show
+当前分组  __MODULE__      /index.php/Home
+当前控制器 __CONTROLLER__ /index.php/Home/Goods
+当前方法  __ACTION__      /index.php/Home/Goods/show
+
+
+4.配置文件：
+	return array(
+		'SHOW_PAGE_TRACE'   =>    true,  //在前台显示加载文件个数，加载速度
+	);
+
+5.使用_empty 方法 处理非法操作
+<?php 
+	namespace Admin\Controller;
+	use Think\Controller;
+
+	class EmptyController extends Controller{
+		public function _empty(){
+			echo "页面错误";
+		}
+
+	}	
+
+ ?>
+
+
+ 6.方法调用：
+
+①：
+<?php 
+	namespace Admin\Controller;
+	use Think\Controller;
+
+	class EmptyController extends Controller{
+		public function _empty(){
+			$obj = new IndexController();
+			$obj -> index();   
+			//调用IndexController类的方法
+			 $this -> display('Index/index.html');
+			//调用的是index.html模板
+
+		}
+
+	}	
+
+ ?>
+
+②：
+	A()
+	A()用来实例化其他控制器的
+	$obj = A('Index');
+	$obj -> index(); 
+
+③：
+	R() 和 A()基本是一样，唯一不同时R()在实例化控制器的时候把操作方法一起传递过去省略了方法的调用
+	$obj = R('Index/index');
+
+④：
+	C('配置名称')  用来获取配置信息
+
+	return array(
+		'SHOW_PAGE_TRACE'   =>    true,  //在前台显示加载文件个数，加载速度
+	);
+
+	echo C('SHOW_PAGE_TRACE');   //结果为   true
+
+⑤：
+	M() =  D()  实例化数据模型
+	M('goods');
+
+⑥：
+	I()  用来获取 get、post、session\cookie等等的数据
+	语法：  I('')
+
+7.判断：
+
+表达式中的运算符
+<  lt   //Less than
+>  gt   //Greater than
+== eq   //Equal
+>= egt  //Equal or greater than
+
+①：	<if condition="表达式">
+
+	<elseif condition="表达式"/>
+
+	<else/>
+
+	</if>
+
+
+	实例：
+	<foreach name='rows' item='val'>   //rows是数组名
+	<if condition='$key%2 eq 0'>	
+		<h1><{$val.username}></h1>
+	<else/
+		<h1 style='background:#ccc'><{$val.username}></h1>
+	</if>	
+	</foreach>
+
+
+②：   默认计数的变量就是  i
+	<for start='0' end='10'>
+			<if condition='$i%2 eq 0'>
+				<h1 style='background:#ccc'><{$i}></h1>
+			<else/>
+				<h1><{$i}></h1>
+			</if>
+	</for>
+
+
+③：
+	<volist name='list' id='vo'>
+	 	<tr>
+	 		<td>{$i}</td>
+	 		<td>{$vo.name}</td>
+	 		<td>{$vo.price}</td>
+	 	</tr>
+	</volist>
+
+
+8.数据表的操作
+
+insert: (add)
+1.$model->add($_POST);
+
+2.$model->create();
+  $model->add();
+
+update: (save)
+1.$user->create();
+  $user->save();
+2.$user->save($_POST);
+
+select:(select)
+$rows=$user->select($id);
+
+find: (find)      // 只获取一条记录
+1.$rows=$user->find(); //默认表中的第一行
+2.$rows=$user->find($id);
+3.$rows=$user->where("id={$id}")->find();
+
+delete: (delete)
+1.$user->delete($id);
+2.$user->where("id={$id}")->delete();
+3.$user->where(array('id'=>$id))->delete();
+
+原生态SQL语句:
+  增删改  M()->execute();
+  查      M()->query();
+
+
+左连接：
+SELECT * FROM user LEFT JOIN tel ON user.id = tel.user_id WHERE tel.id is not NULL;
+$user->join(' score ON user.id = score.uid')->select();
+
+关联查询：
+use Think\Model\RelationModel;
+
+	class OrderModel extends RelationModel {
+		protected $_link = array(
+			'detail'=>array(               //关联表名
+				'mapping_type'	=> self::HAS_MANY,  //表关系  一对多
+				'class_name'	=> 'order_detail',   //关联类或者表
+				'foreign_key'	=> 'order_id',    //关联id
+				'order'			=> 'order_detail_id asc', //排序
+			),
+			'MemberCard'     => array(
+				'mapping_type'   => self::BELONGS_TO,
+				'class_name'     => 'MemberCard',
+				'mapping_name'   => 'MC',  //映射名称   relation('MC');
+				'foreign_key'    => 'member_card_id',
+				'mapping_fields' => 'username,telephone',
+				'as_fields'      => 'username:username,telephone:telephone'
+			),
+			'Channel'     => array(
+				'mapping_type'   => self::BELONGS_TO,
+				'foreign_key'    => 'subscribe_way',
+				'mapping_fields' => 'name',
+				'as_fields'      => 'name:channel_name'//选择字段
+			)
+		);
+	}
+
+   $list = $order->relation(array("detail", "Channel"))->where($where)->limit(0, 1)->order('create_time desc')->select();
+
+   显示模板：
+   		1.  $this -> assign('name', $value);
+   		1.  $this -> name = $value;
+***页面跳转：***
+	$this -> redirect('Index/index', array(), 2, '登陆成功');
+
+
+***权限把控：***
+

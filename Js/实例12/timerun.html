@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	div{
+		width:600px;
+		height:50px;
+		background: black;
+		margin: 0 auto;
+		font-size:50px;
+		text-align:center;
+		color:white;
+	}	
+
+</style>
+<body>
+	<div id="divid">
+	</div>	
+
+<script>
+	var did = document.getElementById("divid");
+
+	setInterval("settime()",1000);  //定时器  每一千毫秒（一秒）执行一次
+
+	function settime(){
+		var dd = new Date();
+		// var y = dd.getFullYear();
+		// var m = dd.getMonth()+1;
+		// var d = dd.getDate();
+		var h = dd.getHours();     
+		var i = dd.getMinutes();
+		var s = dd.getSeconds();
+			// var h = 0;
+			// var i = 0;
+			// var s = 0;
+
+			 if (h < 10 ) { 
+	            h = "0" + dd.getHours(); 
+	           } 
+
+	           if (i < 10 ) { 
+	            i = "0" + dd.getMinutes(); 
+	           } 
+
+	            if (s < 10 ) { 
+	            s = "0" + dd.getSeconds(); 
+	           } 
+		// var tm =  y+"-"+m+"-"+d+" "+h+":"+i+":"+s;
+		var tm = h+":"+i+":"+s;
+		// alert('tm');
+
+		// var t = dd.toLocaleString();    //本地时间
+
+		did.innerHTML = tm;  //不可以用特效他content；
+	}
+
+</script>
+</body>
+</html>

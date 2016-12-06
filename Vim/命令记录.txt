@@ -1,0 +1,9 @@
+1.  gg 返回顶部     shift+g 返回底部
+	G最后一行
+	:set number设置行号
+	:set nonumber关闭行号
+	5G/5gg/:5   跳转到第五行
+
+2.配置：
+	 "auto_match_enabled": true,   //双引号自动补全
+	  "highlight_line": true,      //行提示

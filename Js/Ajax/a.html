@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="" >
+		<select name="" id="st1" size="6" style="display:line;width:50px;height:100px" multiple>
+			<option value="">啊名</option>
+			<option value="">啊黄</option>
+			<option value="">啊毛</option>
+			<option value="">啊波</option>
+			<option value="">啊晶</option>
+			<option value="">啊狗</option>
+		</select>
+		<input type="button" value=">>" onclick="smove()">
+		<select name="" id="st2" size="6" style="display:line;width:50px;height:100px" ></select>
+	</form>
+</body>
+<script>
+	var st1obj = document.getElementById("st1");	
+	var st2obj = document.getElementById("st2");	
+
+	function smove(){
+		var st1index = st1obj.selectedIndex;  //计算当前选中option的key值
+
+		for (var i = 0; i < st1obj.length; i++) {
+
+			if (i == st1index) {
+				var st1value = st1obj[st1index].innerHTML;  //得到选中option的innerHTML
+				var st2index = new Option(st1value, st1value);  //创建一个option
+				st2obj.add(st2index);  //追加到第二个select内
+			};
+		};
+
+		// for (var i = st1obj.length-1; i >= 0; i--) {
+		// 	if (i == st1index) {
+		// 		st1obj.remove(st1index);  //从以一个option删除已经追加到第二个的option
+		// 	};
+		// };
+	}
+
+</script>
+</html>

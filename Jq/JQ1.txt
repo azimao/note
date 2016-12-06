@@ -1,0 +1,222 @@
+1.当DOM预加载完成时运行代码：
+$(document).read(function)(){
+	
+}
+// $(document).read  可以简写为$
+$(function(){})
+
+
+2.jq的访问对象：
+	each(); 循环遍历
+	size();
+	get();
+	get(index);
+	index();
+
+
+
+
+	把js元素对象转成jquery对象
+	var objs = document.getElementsByTagName();
+	$(objs).css("color","red");
+
+
+
+筛选
+
+	过滤：
+	$("h1").eq(0).css("color","red"); //样式不可以带- ，首字母大写 
+	$("h1").eq(0).css({"color":"red"}); //可以带-
+
+	$("h1").first().css({"color":"red"}); //第一个h1标签
+	$("h1").last().css({"color":"red"}); //最后一个h1标签
+
+	$("p").filter(".selected")     //从p标签中找到一个类名是selected的
+	等于   $("p.selected")
+
+	$("li").has("ul").css("background-color","red");   ?   //寻找li中有ul的标签
+
+
+	$("p").not(".selected")     //从p标签中排除一个类名是selected的
+
+	$("h1").slice(1, 3).css({"color":"red"});   //1到3(不包括3) 字体变成红色
+
+	查找：
+	$("div").eq(0).children().css({"color":"blue","background":"red"});  //寻找第一个div里面的子元素
+	$("div").eq(0).children("h1:eq(1)").css({"color":"blue","background":"red"});  //寻找第一个div里面的子元素中第二个h1标签
+
+	例子：
+		<div>
+			<h1>01</h1>
+			<h1>02</h1>
+			<h1>03</h1>
+		</div>
+		<div>
+			<h1>04</h1>
+			<h1>05</h1>
+		</div>
+
+	<script>
+	$("div:eq(0)>h1:eq(1)").click(fucntion(){
+		$(this).parent().next().children.eq(1).css({"color","red"});
+	});
+		//当点击第一个div中的第二个h1时，使第二个div中的第二个h1改变字体颜色
+
+	$("div:eq(0)>h1:eq(1)").click(function(){
+		$(this).nextAll().css({"color","red"});
+	});  
+		//当点击第一个div中的第二个h1时,让它后面的所有h1字体都变色
+
+
+	$("div:eq(0)>h1:eq(1)").click(function(){
+		$(this).prevAll().css({"color","red"});
+	});  
+		//当点击第一个div中的第二个h1时,让它前面的所有h1字体都变色(prev 前面的一个)
+
+	$("div:eq(0)>h1:eq(1)").click(function(){
+		$(this).siblings().css({"color","red"});
+	});  
+		//当点击第一个div中的第二个h1时，让它前后的所有h1发生改变
+
+	</script>
+
+串联：
+	
+	$("p").add("span")     选中p标签和span标签
+
+	$("div:eq(0)>h1:eq(0)").click(function(){
+		$(this).next().add($(this).next().next()).css({"color","red"});
+	});  
+ 
+	$("div:eq(0)>h1:eq(0)").click(function(){
+		$(this).next().next().next().andself().css({"color","red"});
+	});  
+		// andself()   此时代表的是  $(this).next()
+	//当点击第一个div中的第一个h1时，让它后面的两个h1发生改变
+
+
+属性：
+	<img src = "">
+
+	attr():
+		$("img").attr({"src":"a.png"});  //设置图片名
+		alert($("img").attr("src"));  //获取图片名
+
+
+	removeAttr():
+		$("img").removeAttr("src");  //删除src
+
+CSS类：
+	$("img").addClass("imgcls");  //在img上添加一个叫imgcls的类
+	$("img").removeClass("imgcls");  //删除一个叫imgcls的类	
+	$("img").toggleClass("imgcls");  //当有这个类的时候就删除，没有这个类的时候就添加	
+
+HTML类:
+	alert($("h1").html());   //获取html类容
+	alert($("h1").html("<h1>哈哈</h1>"));   //给h1内赋值
+
+文本:
+	alert($("h1").text());   //获取text类容
+	alert($("h1").text("哈哈"));   //给h1内赋值
+	
+值：
+	alert($("input:text").val());  找到input并弹出他的值 (value) 
+	$("input:text").val("user");  找到input并给value赋值  
+
+
+文档处理：
+	<div id="div1">
+		<h1>01</h1>
+		<h1>02</h1>
+	</div>		
+	<div id="div2">
+		<h1>03</h1>
+	</div>
+
+	内部插入： 
+		append
+	$("#div2").append($("#div1 h1")); //把div1  里面的 h1 追加到 div2中的h1后（div1中的h1都会消失）
+
+		prepend
+	$("#div2").prepend($("#div1 h1"))	//追加到 div2中的h1前
+
+
+	外部插入：
+		after
+	$("#div2").after($("#div1 h1"))   //追加到div2外的后面
+
+		before
+	$("#div2").before($("#div1 h1"))   //追加到div2外的前面
+
+
+	insertAfter()    insertB efore()   //互换位置
+
+	包裹：   
+		wrap()   wrapAll()
+	$("#div1 h1").wrap("<i></i>");  //外包围每一个h1(三个i)
+	$("#div1 h1").wrapAll("<i></i>");  //外包围每所有h1(一个i)
+
+		wrapInner()
+	$("#div1 h1").wrapInner("<i></i>");  //内包围每所有h1(<h1><i>01</i></h1>)
+
+		unwarp()
+	$("#div1 h1").unwrap("<i></i>");  //去掉外包围每一个h1(三个i)
+
+	替换：
+		replaceWith()
+	$("#div1 h1").replaceWith("<span>aaa</span>");  //把所有h1替换成<span>aaa</span>
+
+		replaceAll()
+	$("<span>aaa</span>").replaceWith($("#div1 h1"));  //把所有h1替换成<span>aaa</span>
+
+
+	删除：
+		empty()  remove()
+
+	复制：
+		clone()  
+
+
+CSS:
+	位置：
+		scrollTop()    //设定滚动值
+		offset().top  offset.left //获取一个绝对定位的坐标 
+		position().left  //获取绝对定位的坐标  
+
+	尺寸：
+		$("#div1").width(500);    //获取or设置宽
+		$("#div1").height();    //获取or设置高
+
+		$("#div1").innerwidth();    //获取设置高(包括内边距)
+		$("#div1").outerwidth();    //获取设置高(包括边框)
+
+
+	CSS();
+		$("#div1").css("width":"300px","height":"300px");
+
+	获取图片的宽高：   
+		 $("#div1").width();     //获取宽
+		 $("#div1").width(500);     //设置宽
+
+	获取图片的宽高（包括补白和边框）：
+		 $("#div1").outerWidth();     //获取宽
+
+	获取图片的宽高（包括内边距）：
+		 $("#div1").innerWidth();     //获取宽
+
+
+位置：
+
+	scrollTop();   //获取滚动高度
+		$(window).scrollTop(300);  //滚动到300
+
+		$(window).scroll(function(){
+			document.title = $(window).scrollTop();
+		}); 
+		//获取滚动的高显示在标题栏
+
+	offset();  //获取偏移坐标  top 和 left
+		 var x = $("img").offset().left;    //获取偏移的left 
+
+
+	position();  //获取相对于父标签偏移坐标  top 和 left

@@ -1,0 +1,150 @@
+ BOM浏览器对象
+
+ 1.window对象
+ 2.navigator对象
+ 3.screen对象
+ 4.history对象
+ 5.location对象
+ 6.document对象（DOM）
+
+widnow对象：
+
+属性：
+frames   //窗口数组
+length   //frame个数
+name     //窗口名字    target="win2"
+opener    //打开我的那个窗口
+parent    //父窗口
+top      //顶级窗口
+
+方法：
+open("right.html","win2","特性");
+窗口特性
+	fullscree = 1|0 //是否全部   ie支持
+	width/height = “”   //窗口宽高
+	left = ""  //离屏幕左上角的left
+	top = ""   //离屏幕左上角的top
+	location = 1|0  //是否有地址栏，都不支持
+	menubar = 1|0   //是否有菜单
+
+alert();
+confirm();
+prompt();
+setInterval();
+clearInterval();
+setTimeout();
+clearTimeout();
+moveTo()   //ie没问题
+moveBy     //ie没问题
+scrollTo();  //都支持
+scrollBy();  //都支持
+
+
+Navigator对象：
+
+	属性：
+		appName    //大概判断
+		userAgent  //精确判断
+
+
+screen 屏幕对象：
+	属性：
+		height
+		width
+
+		availHeight  //有效高
+		availwidth   //有效宽
+
+history  历史对象：
+	属性：
+		length   //返回历史的个数
+
+		方法：
+		back()    后退一个历史   go(-1)
+		forward()    前进一个历史   go(1)
+		go(2)    前进两个历史   
+		go(-2)   后退两个历史   
+
+location对象：
+	属性：
+		hash    //获取url里的锚点    
+		host   //主机名
+		href    //地址跳转，保留历史，也可不写location=“地址”
+		port    //端口 ：80
+		protocol //协议 http://
+		seacrch  //参数  ？id=10&name=user1
+
+	方法：
+	reload()    //加载当前页面
+	repalace()   //加载当前页面,但不保留历史
+
+
+
+DOM对象:
+
+	document
+	document.documentElement
+	document.head
+	document.title
+	document.body
+
+获取元素对象的方法:
+
+	document.documentElementById()
+	document.documentElementsByTagName()
+	document.documentElementByClass()
+	document.documentElement
+
+元素对象的常用属性：
+<h1 id="hid"  class="hcls" name="yujie"><span>test</span></h1>
+
+var obj=document.getElementById("hid");
+
+获取元素对象的属性：
+obj.getAtrribute("class");
+
+设置元素对象的属性：
+obj.setAtrribute("class","hclass");
+
+获取元素标签内的html内容：
+obj.innerHTML;
+
+获取元素标签内的text内容：
+obj.textcontent;
+
+获取元素标签内的html内容：
+obj.outterHTML;
+
+获取元素对象的标签名
+obj.tagName;
+
+文档内常用集合：
+	forms
+	links
+	anchors
+	frames
+	forms
+	elements
+	options
+	rows
+	cells
+------------------------------------------
+Ajax无刷新技术：
+
+1.找到Ajax对象 xmlHttpRequest(xhr)
+FF:
+xhr = new XMLHttpRequest();
+
+2.Ajax属性
+xhr.responseText:
+
+3.Ajax get方法
+xhr.open("get","index.php",true);
+xhr.send();
+
+4.Ajax posst方法
+xhr.open("post","index.php",true);
+xhr.send(str);
+
+.Ajax事件
+xhr.readystatechange = function(){}
