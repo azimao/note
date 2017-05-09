@@ -1,0 +1,98 @@
+﻿php魔鬼训练第一阶段：
+
+
+Ubt 简单指令：
+	查询文件夹所在地址：
+		which php
+	查询安装路径：
+		whereis php    or    dpkg -L php
+	文件为绿色的时候才是可执行文件:
+		chmod +x god //赋予可执行权限 
+
+
+	echo $PATH //显示环境变量的文件夹 把可执行文件放到环境变量的某一个文件里面之后就可以在任意地方执行了
+	netstat-lnp | grep 端口号
+	
+
+liunx快捷键：
+	Ctrl+S在Linux里，是锁定屏幕的快捷键。如果要解锁，按下Ctrl+Q就可以了
+	删除程序中断所生成的临时文件     rm .god.swp
+	ctrl+alt+t打开终端
+	get number  获取行号
+	rm * -fr   //删除当前文件家夹下所有文件
+
+	查找php默认配置文件的存放位置： 
+		php -i | grep "Loaded Configuration File"
+		或者： <?php phpinfo()  ?>
+
+
+
+
+	
+PHP:
+	PHP_VERSION;   //当前版本号
+	全局变量 $argc 和 $argv    前者是参数个数  后者是参数，他是一个数组
+	getcwd();  返回当前工作路径    ， 否则返回false
+	file_put_content(string $filename, mixed $data);   // 文件名   生成内容
+	require 执行出错会终止   inlcude 会继续执行   inlucde 常用于引用页面模板
+	function genConfig():string {}    //php7新特性  限制返回值的类型
+
+	静态变量静和非静态变量的的区别：
+	class godinit{ static $v = ’maoyu’; }    调用： godinit::$v
+	class godinit{ $v = ’maoyu’; }    调用： $g = new godinit();  $g→v;
+
+	fgets(STDIN)   // fgets 从文本中读取一行，  STDIN 一般指键盘输入
+
+	php打包：
+		$pchar = new Phar("god.phar");  //Generate package file name
+		$pchar -> buildFromDirectory(dirname(__FILE__));  //find file path
+		$pchar -> setStub($pchar->createDefaultStub('god'));  //Entry file（入口文件）
+		$pchar -> compressFiles(Phar::GZ);
+		 php god.phar  //执行入口文件
+
+	php缓冲区：
+		ob_start();   //开启缓冲区
+		ob_get_contents();  //获取缓冲区内容
+		ob_end-clean();  //清除缓冲区内容
+		ob_end_flush();    //关闭缓冲区，并把内容输出出来	
+
+
+	extract 把数组变成变量  
+	get_object_vars 获取类里面定义的变量
+
+	启动php服务器：
+		/usr/bin/php -S localhost:8081 -t /home/PhpstornProjects/godpro
+
+	system("/usr/bin/php -S localhost:8081 -t 	/home/azimao/PhpstormProjects/godpro/azimao"); //执行shell语句
+
+    //删除文件
+    $file = 'dirlist.php'; 
+    $result = @unlink ($file); 
+
+    //获取文件属性
+    $file = 'test.txt'; 
+    echo date('r', filemtime($file)); 
+
+JQ:
+    
+       JSON.parse()               //字符串解析成对象
+       JSON.stringify()            //对象解析成字符串
+
+
+
+
+phpstrom配置：
+	配置->Editor->file types ->php  添加* 无法识别后缀就会默认显示php
+
+
+
+
+
+vim:
+	$ 代表一行的结尾处
+	^ 代表一行的开头处
+	
+
+
+
+
