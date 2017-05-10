@@ -55,10 +55,12 @@ PHP:
 		ob_get_contents();  //获取缓冲区内容
 		ob_end-clean();  //清除缓冲区内容
 		ob_end_flush();    //关闭缓冲区，并把内容输出出来	
-
-
+    
+    
+    函数：
 	extract 把数组变成变量  
-	get_object_vars 获取类里面定义的变量
+	get_object_vars 获取  类里面定义的变量
+   func_get_args 获取函数传递进来的值
 
 	启动php服务器：
 		/usr/bin/php -S localhost:8081 -t /home/PhpstornProjects/godpro
