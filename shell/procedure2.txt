@@ -1,0 +1,11 @@
+#£¡/bin/bash
+
+prot=$£¨nmap -sT 192.168.1.108 | grep tcp | grep http | awk '{print $2}'£©
+
+if [ "$prot" == "open" ]
+	then
+		echo "$(date) httpd is ok" >> /tmp/httpd_acc.log
+	else
+		/etc/rc.d/init.d/httpd restart &>/dev/null
+		echo "$(date) httpd is reboot" >> /tmp/httpd_err.log
+fi

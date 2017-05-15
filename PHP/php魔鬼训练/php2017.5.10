@@ -85,6 +85,7 @@ JQ:
 
 phpstrom配置：
 	配置->Editor->file types ->php  添加* 无法识别后缀就会默认显示php
+	侧边栏： view->Tool Windows->project
 
 
 

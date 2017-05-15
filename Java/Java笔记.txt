@@ -1,0 +1,26 @@
+1.java是解释型语言，C/C++是编译型语言
+2.
+J2SDK=J2 software（软件）
+
+Devleopment（开发） kit(包)
+
+JRE=j Runtime(运行) Environment（环境）
+
+false(虚假的)
+
+prime(素数；最好的；首要的；)
+
+function(函数)
+
+traverse(便利。横穿，穿过)
+
+heap堆
+
+stack（栈，干草堆）
+
+data（资料）segment（字符，部分）；（数据段，字符型常量）
+
+code（密码，代码）segment;(代码段，存放变量)
+
+rank次序排序
+
