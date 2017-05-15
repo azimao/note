@@ -17,7 +17,8 @@ int main(void)
 		sum = sum*10 + m%10;
 		m/= 10;
 	}
-    
+
+
 	if(sum == val)
 		printf("yes\n");
 	else
