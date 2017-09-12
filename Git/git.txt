@@ -6,3 +6,6 @@
    git commit -m "提示"				   	git commit -a -m "提示"     提交备注
    git remote add origin(别名)  路径
    git push origin master(主分支)
+   
+   git config --global --edit    //修改用户名和邮箱
+   git commit --amend --reset-author    //修改提交文件
